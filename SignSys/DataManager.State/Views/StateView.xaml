@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="DataManager.State.Views.StateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="GroupBox" >
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    <!--<DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <UniformGrid Rows="2">
+            <GroupBox DockPanel.Dock="Top" Header="工作状态">
+                <DockPanel>
+                    <Button Margin="5" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Adjust"/>
+                    </Button>
+                    <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left" Text="请选择状态:"/>
+                    <ComboBox MaxWidth="180" IsEditable="True" SelectedIndex="0" HorizontalAlignment="Center">
+                        <ComboBoxItem>请假</ComboBoxItem>
+                        <ComboBoxItem>上课</ComboBoxItem>
+                    </ComboBox>
+                </DockPanel>
+            </GroupBox>
+
+        </UniformGrid>
+    </DockPanel>-->
+
+
+    <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <GroupBox DockPanel.Dock="Top"  Header="工作状态">
+
+            <DockPanel>
+                <Button  Margin="5" VerticalAlignment="Center" >
+                    <materialDesign:PackIcon Kind="Library"/>
+                </Button>
+                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left" Text="选择请假原因:"/>
+                <ComboBox  x:Name="ComboBox" MaxWidth="180" IsEditable="True" SelectedIndex="0" HorizontalAlignment="Center" >
+                    <ComboBoxItem>上课</ComboBoxItem>
+                    <ComboBoxItem>请假</ComboBoxItem>
+                </ComboBox>
+
+            </DockPanel>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Top" Header="其他原因">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox FontSize="20" TextWrapping="Wrap" Text="{Binding LeaveReson}"/>
+                <DockPanel Margin="10" Grid.Row="1">
+                    <Button Margin="5" DockPanel.Dock="Right" Content="上传" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=ComboBox}" VerticalAlignment="Center"/>
+                    <Button Margin="3" DockPanel.Dock="Right" Content="关闭窗口" VerticalAlignment="Center" Command="{Binding ReturnHomePageCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Grid/>
+                    </DockPanel>
+                    <Grid/>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+
+</UserControl>

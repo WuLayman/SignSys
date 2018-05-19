@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="DataManager.Title.Views.TitleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:DataManager.Title.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="80" d:DesignWidth="1000">
+
+    <Border Style="{DynamicResource TitleBackground_Border_Style}" >
+        <Grid>
+            <StackPanel Orientation="Vertical">
+                <Border Height="40" Margin="20,13,0,0" VerticalAlignment="Center"  Background="Transparent" x:Name="TitleBorder">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition MinWidth="400"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/School.jpg" Height="50" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding TitleName}" Style="{DynamicResource Title_TextBlock_Style}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0"/>
+                        <Controls:Clock HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,-5,20,0" Grid.Column="1" Height="Auto" />
+                    </Grid>
+                </Border>
+                <Border Height="40" Margin="20,-5,0,0">
+                    <Border.RenderTransform>
+                        <SkewTransform CenterX="0" CenterY="0" AngleX="180" AngleY="0" />
+                    </Border.RenderTransform>
+                    <Border.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#90999999"/>
+                            <GradientStop Offset="0.7" Color="#00000000"/>
+                        </LinearGradientBrush>
+                    </Border.OpacityMask>
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=TitleBorder}">
+                            <VisualBrush.RelativeTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="-1" CenterX="0.5" CenterY="0.5"/>
+                            </VisualBrush.RelativeTransform>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+
+
+</UserControl>

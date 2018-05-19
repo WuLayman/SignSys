@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Person" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Person" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PersonInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MacAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassWord" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserNickName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserRealName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonInfo" nillable="true" type="tns:PersonInfo" />
+  <xs:complexType name="PictureInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="TtAndEP" type="tns:TimetableAndExpPic" />
+      <xs:element minOccurs="0" name="UserNickName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PictureInfo" nillable="true" type="tns:PictureInfo" />
+  <xs:simpleType name="TimetableAndExpPic">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="课程表" />
+      <xs:enumeration value="实验表" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TimetableAndExpPic" nillable="true" type="tns:TimetableAndExpPic" />
+  <xs:complexType name="PersonSignInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSign" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SignTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserNickName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonSignInfo" nillable="true" type="tns:PersonSignInfo" />
+  <xs:simpleType name="PersonStateInfo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="上课" />
+      <xs:enumeration value="请假" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PersonStateInfo" nillable="true" type="tns:PersonStateInfo" />
+  <xs:complexType name="ArrayOfPersonSignInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonSignInfo" nillable="true" type="tns:PersonSignInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPersonSignInfo" nillable="true" type="tns:ArrayOfPersonSignInfo" />
+</xs:schema>

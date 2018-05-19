@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DataManager.Picture.Views.DownLoadPictureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:inf="clr-namespace:Client.Infrastructure;assembly=Client.Infrastructure"
+             xmlns:person="clr-namespace:Person;assembly=Person"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <Style TargetType="GroupBox">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+       
+    </UserControl.Resources>
+
+    <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <GroupBox DockPanel.Dock="Top"  Header="选择要查看课表">
+            <DockPanel>
+
+                <!--<DockPanel.Resources>
+                    <x:Array  x:Key="eumArray" Type="{x:Type person:TimetableAndExpPic}">
+                        <x:Array.Items>
+                            <person:TimetableAndExpPic>课程表</person:TimetableAndExpPic>
+                            <person:TimetableAndExpPic>实验表</person:TimetableAndExpPic>
+                        </x:Array.Items>
+                    </x:Array>
+                </DockPanel.Resources>-->
+                <Button  Margin="5" VerticalAlignment="Center" >
+                    <materialDesign:PackIcon Kind="Library"/>
+                </Button>
+                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left" Text="请选择种类:"/>
+                <Button  Margin="5"  DockPanel.Dock="Right" Command="{Binding DownPictureCommand}" CommandParameter="{Binding ElementName=Image}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Download" />
+                        <TextBlock Text="查看" Margin="3 0 0 0"  VerticalAlignment="Center" FontSize="15" FontWeight="Normal" FontFamily="Microsoft YaHei"/>
+                    </StackPanel>
+                </Button>
+                <ComboBox  ItemsSource="{Binding BingingTTAndEP}" SelectedItem="{Binding SelectedTTAndEP}"  IsEditable="True"  SelectedIndex="0" HorizontalAlignment="Center"/>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Top" Header="图片">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" x:Name="Image"/>
+                <DockPanel Margin="10" Grid.Row="1">
+                    <Button Margin="3" DockPanel.Dock="Right" Content="关闭窗口" VerticalAlignment="Center" Command="{Binding ReturnHomePageCommand}">
+                        <Button.CommandParameter>
+                            <system:Boolean>True</system:Boolean>
+                        </Button.CommandParameter>
+                    </Button>
+                    <Grid/>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+
+
+
+</UserControl>
