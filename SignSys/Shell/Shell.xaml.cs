@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PublicBaseClassProj
+namespace Shell
 {
     /// <summary>
-    /// UserControl1.xaml 的交互逻辑
+    /// Shell.xaml 的交互逻辑
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class Shell : Window
     {
-        public UserControl1()
+        public Shell()
         {
             InitializeComponent();
         }
