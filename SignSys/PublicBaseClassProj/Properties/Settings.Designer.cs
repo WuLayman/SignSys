@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PublicBaseClass.Properties
+namespace PublicBaseClassProj.Properties
 {
     
     
