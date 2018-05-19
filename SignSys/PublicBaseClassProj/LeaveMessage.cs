@@ -11,6 +11,7 @@ namespace PublicBaseClassProj
         private string leaveState;
         private DateTime leaveTime;
         private string message;
+          
 
         public string RealName { get; set; }
         public string LeaveState { get => leaveState; set => leaveState = value; }
