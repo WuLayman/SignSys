@@ -50,6 +50,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LeaveMessage.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonSignInfo.cs" />

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServerRestructure.Properties
+namespace MainProj.Properties
 {
 
 

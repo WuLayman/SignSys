@@ -61,8 +61,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServerInterface\IGetData.cs" />
     <Compile Include="PublicBaseInterface\IReceiveInfoFromServer.cs" />
+    <Compile Include="ServerInterface\IReceiveInfoFromDB.cs" />
+    <Compile Include="ServerInterface\ISendDataToDB.cs" />
     <Compile Include="PublicBaseInterface\ISendInfoToServer.cs" />
+    <Compile Include="ServerInterface\Manager.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
