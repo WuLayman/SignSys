@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ServerRestructure
 {
-    public partial class Form1 : Form
+    public partial class SeverMainFrm : Form
     {
-        public Form1()
+        public SeverMainFrm()
         {
             InitializeComponent();
         }
