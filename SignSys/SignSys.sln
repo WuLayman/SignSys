@@ -9,6 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{F7D900
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerRestructure", "ServerRestructure\ServerRestructure.csproj", "{E25E7124-8F8B-43AB-B19D-857F7CEE28F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCF", "WCF", "{6DB95C3C-1E36-48EF-AC70-45BA975A416E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCFServer", "WCFServer", "{7FB38229-3701-4234-B678-2057BBED1479}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCFClient", "WCFClient", "{216768EC-DA09-43E5-832D-77B1A991251A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E25E7124-8F8B-43AB-B19D-857F7CEE28F5} = {F7D9001C-6EFB-4AF0-8011-71F4C3D49976}
+		{7FB38229-3701-4234-B678-2057BBED1479} = {6DB95C3C-1E36-48EF-AC70-45BA975A416E}
+		{216768EC-DA09-43E5-832D-77B1A991251A} = {6DB95C3C-1E36-48EF-AC70-45BA975A416E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99FC91B9-CCFC-4D4C-AB84-D60FD34E08E3}
