@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 namespace PublicBaseClassProj
 {
     [DataContract]
-    public class PictureInfo : NotifyPropertyChangedBase
+    public class PictureInfo 
     {
         private string _userNickName;
         private byte[] _picture;
         
         private TimetableAndExpPic _ttAndEP;
         [DataMember]
-        public TimetableAndExpPic TtAndEP { get => _ttAndEP; set { _ttAndEP = value; OnPropertyChanged("TtAndEP"); } }
+        public string UserNickName { get => _userNickName; set => _userNickName = value; }
         [DataMember]
-        public string UserNickName { get => _userNickName; set { _userNickName = value; OnPropertyChanged("UserNickName"); } }
+        public byte[] Picture { get => _picture; set => _picture = value; }
         [DataMember]
-        public byte[] Picture { get => _picture; set { _picture = value; OnPropertyChanged("Picture"); } }
-
+        public TimetableAndExpPic TtAndEP { get => _ttAndEP; set => _ttAndEP = value; }
     }
 }

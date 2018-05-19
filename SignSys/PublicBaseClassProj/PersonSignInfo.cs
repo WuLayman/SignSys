@@ -9,19 +9,17 @@ using System.Threading.Tasks;
 namespace PublicBaseClassProj
 {
     [DataContract]
-    public class PersonSignInfo : NotifyPropertyChangedBase
+    public class PersonSignInfo 
     {
         private string _userNickName;
         private DateTime? _signTime;
 
         private bool _isSign;
         [DataMember]
-        public bool IsSign { get => _isSign; set { _isSign = value; OnPropertyChanged("IsSign"); } }
-
+        public string UserNickName { get => _userNickName; set => _userNickName = value; }
         [DataMember]
-        public string UserNickName { get => _userNickName; set { _userNickName = value; OnPropertyChanged("UserNickName"); } }
+        public DateTime? SignTime { get => _signTime; set => _signTime = value; }
         [DataMember]
-        public DateTime? SignTime { get => _signTime; set { _signTime = value; OnPropertyChanged("SignTime"); } }
-
+        public bool IsSign { get => _isSign; set => _isSign = value; }
     }
 }
