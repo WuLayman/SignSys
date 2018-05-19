@@ -11,9 +11,7 @@ namespace Person
     {
         private string _userNickName;
         private byte[] _picture;
-         
-
-
+        
         private TimetableAndExpPic _ttAndEP;
 
         public TimetableAndExpPic TtAndEP { get => _ttAndEP; set { _ttAndEP = value; OnPropertyChanged("TtAndEP"); } }
