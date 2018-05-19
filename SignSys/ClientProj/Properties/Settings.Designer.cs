@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Shell.Properties
+namespace ClientProj.Properties
 {
 
 
