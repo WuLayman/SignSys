@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E25E7124-8F8B-43AB-B19D-857F7CEE28F5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ServerRestructure</RootNamespace>
-    <AssemblyName>ServerRestructure</AssemblyName>
+    <ProjectGuid>{5AD6E52F-9231-4BBC-BD01-32877E26F729}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WCFSocket</RootNamespace>
+    <AssemblyName>WCFSocket</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,46 +32,40 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SeverMainFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SeverMainFrm.Designer.cs">
-      <DependentUpon>SeverMainFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="CommunicateManager\Agreement\IService.cs" />
+    <Compile Include="CommunicateManager\Agreement\Service.cs" />
+    <Compile Include="CommunicateManager\Cache.cs" />
+    <Compile Include="CommunicateManager\GetIp.cs" />
+    <Compile Include="CommunicateManager\ServerOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\AllInterfaceProj\AllInterfaceProj.csproj">
+      <Project>{f20b8cd6-7a0d-4e0f-909c-580146956cc5}</Project>
+      <Name>AllInterfaceProj</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImplementInterface\ImplementInterface.csproj">
+      <Project>{811ce525-a973-40c7-90fa-89fe62ecc003}</Project>
+      <Name>ImplementInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PublicBaseClassProj\PublicBaseClassProj.csproj">
+      <Project>{E8F48975-79D1-450A-8C90-16A8EBE80DB2}</Project>
+      <Name>PublicBaseClassProj</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeverToDB\SeverToDB.csproj">
+      <Project>{89ddd688-73e6-49bb-84b4-6c2b8153d1f6}</Project>
+      <Name>SeverToDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
