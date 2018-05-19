@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Person" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IService_Leave_InputMessage">
+    <wsdl:part name="parameters" element="tns:Leave" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendPerosnInfoToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendPerosnInfoToServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendPerosnInfoToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendPerosnInfoToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendPictureInfoToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendPictureInfoToServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendPictureInfoToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendPictureInfoToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendChangePersonInfoToDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendChangePersonInfoToDB" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendChangePersonInfoToDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendChangePersonInfoToDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendSignInfoToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendSignInfoToServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendSignInfoToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendSignInfoToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendStateInfoToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendStateInfoToServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendStateInfoToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendStateInfoToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendAllSignInfoToClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAllSignInfoToClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_SendAllSignInfoToClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAllSignInfoToClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveMacAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMacAddress" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveMacAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMacAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceivePictureFromServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePictureFromServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceivePictureFromServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePictureFromServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveSignInfoFromServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveSignInfoFromServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveSignInfoFromServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveSignInfoFromServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveAllSignInfoFromServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveAllSignInfoFromServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ReceiveAllSignInfoFromServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveAllSignInfoFromServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ShowMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService_ShowMessage_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Login" message="tns:IService_Login_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Update" message="tns:IService_Update_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Leave">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Leave" message="tns:IService_Leave_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendPerosnInfoToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendPerosnInfoToServer" message="tns:IService_SendPerosnInfoToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendPerosnInfoToServerResponse" message="tns:IService_SendPerosnInfoToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendPictureInfoToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendPictureInfoToServer" message="tns:IService_SendPictureInfoToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendPictureInfoToServerResponse" message="tns:IService_SendPictureInfoToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendChangePersonInfoToDB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendChangePersonInfoToDB" message="tns:IService_SendChangePersonInfoToDB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendChangePersonInfoToDBResponse" message="tns:IService_SendChangePersonInfoToDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendSignInfoToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendSignInfoToServer" message="tns:IService_SendSignInfoToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendSignInfoToServerResponse" message="tns:IService_SendSignInfoToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendStateInfoToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendStateInfoToServer" message="tns:IService_SendStateInfoToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendStateInfoToServerResponse" message="tns:IService_SendStateInfoToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendAllSignInfoToClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SendAllSignInfoToClient" message="tns:IService_SendAllSignInfoToClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SendAllSignInfoToClientResponse" message="tns:IService_SendAllSignInfoToClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMacAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ReceiveMacAddress" message="tns:IService_ReceiveMacAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ReceiveMacAddressResponse" message="tns:IService_ReceiveMacAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceivePictureFromServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ReceivePictureFromServer" message="tns:IService_ReceivePictureFromServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ReceivePictureFromServerResponse" message="tns:IService_ReceivePictureFromServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveSignInfoFromServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ReceiveSignInfoFromServer" message="tns:IService_ReceiveSignInfoFromServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ReceiveSignInfoFromServerResponse" message="tns:IService_ReceiveSignInfoFromServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveAllSignInfoFromServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ReceiveAllSignInfoFromServer" message="tns:IService_ReceiveAllSignInfoFromServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ReceiveAllSignInfoFromServerResponse" message="tns:IService_ReceiveAllSignInfoFromServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ShowMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ShowMessage" message="tns:IService_ShowMessage_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ShowMessageResponse" message="tns:IService_ShowMessage_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://tempuri.org/IService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Leave">
+      <soap12:operation soapAction="http://tempuri.org/IService/Leave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendPerosnInfoToServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendPerosnInfoToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPictureInfoToServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendPictureInfoToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendChangePersonInfoToDB">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendChangePersonInfoToDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSignInfoToServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendSignInfoToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendStateInfoToServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendStateInfoToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAllSignInfoToClient">
+      <soap12:operation soapAction="http://tempuri.org/IService/SendAllSignInfoToClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveMacAddress">
+      <soap12:operation soapAction="http://tempuri.org/IService/ReceiveMacAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePictureFromServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/ReceivePictureFromServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveSignInfoFromServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/ReceiveSignInfoFromServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveAllSignInfoFromServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/ReceiveAllSignInfoFromServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService/ShowMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
+      <soap12:address location="net.tcp://192.168.20.1:6000/mywcf" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.20.1:6000/mywcf</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
