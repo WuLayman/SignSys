@@ -27,7 +27,7 @@ namespace AllInterface.AllInterfaceProj.PublicBaseInterface
         /// 从服务端接收（课表信息）
         /// </summary>
         /// <returns>返回课表信息类</returns>
-        PictureInfo ReceivePictureFromServer(TimetableAndExpPic ttAndEP);
+        PictureInfo ReceivePictureFromServer(string userName,TimetableAndExpPic ttAndEP);
 
         /// <summary>
         /// 从服务端接收今日是否已签到
