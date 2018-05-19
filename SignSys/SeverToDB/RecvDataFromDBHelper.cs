@@ -12,7 +12,7 @@ namespace SeverToDB
     public class RecvDataFromDBHelper : IReceiveInfoFromDB
     {
         Entities1 dbContext = EntityHelper.GetEntities();
-
+          
         public bool JudgeIfManagerExist(Manager manager)
         {
             try

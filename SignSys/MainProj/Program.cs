@@ -16,7 +16,7 @@ namespace MainProj
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SeviceFrm());
+            Application.Run(new SeviceFrm());   
         }
     }
 }

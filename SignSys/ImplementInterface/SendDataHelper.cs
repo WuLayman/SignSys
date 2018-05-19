@@ -12,7 +12,7 @@ namespace ImplementInterface
 
 {
     public class SendDataHelper : ISendDataToDB
-    {
+    {  
         public bool SendChangePersonInfoToDB(PersonInfo personInfo)
         {
             try

@@ -12,7 +12,7 @@ using WCFSocket.CommunicateManager.Agreement;
 using PublicBaseClassProj;
 
 namespace WCFSocket.CommunicateManager
-{
+{  
     public static class ServerOperation
     {
         public static ServiceHost host;
