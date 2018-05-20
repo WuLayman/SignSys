@@ -13,7 +13,7 @@ namespace WCFSocket.CommunicateManager.Agreement
 {
     //客户端对服务端所有的操作在service里定义，包括请求数据和发送数据。
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ICallBackServices))]
-    public interface IService: IReceiveInfoFromServer, ISendInfoToServer
+    public interface IService
     {
         /// <summary>
         /// 登录
@@ -39,7 +39,7 @@ namespace WCFSocket.CommunicateManager.Agreement
         /// <param name="personInfo">用户信息类</param>
         /// <returns>返回的bool来判断是否发送成功</returns>
         [OperationContract(IsOneWay = false)]
-        new bool SendPerosnInfoToServer(PersonInfo personInfo);
+        bool SendPerosnInfoToServer(PersonInfo personInfo);
 
         /// <summary>
         /// 向服务端发送用户课表函数
@@ -47,21 +47,21 @@ namespace WCFSocket.CommunicateManager.Agreement
         /// <param name="pictureInfo">课表信息类</param>
         /// <returns>返回的bool来判断是否发送成功</returns>
         [OperationContract(IsOneWay = false)]
-        new bool SendPictureInfoToServer(PictureInfo pictureInfo);
+        bool SendPictureInfoToServer(PictureInfo pictureInfo);
         /// <summary>
         /// 向服务端发送更改密码要求
         /// </summary>
         /// <param name="personInfo"></param>
         /// <returns></returns>
         [OperationContract(IsOneWay = false)]
-        new bool SendPasswordToServer(PersonInfo personInfo);
+        bool SendPasswordToServer(PersonInfo personInfo);
         /// <summary>
         /// 向服务端发送签到信息
         /// </summary>
         /// <param name="signInfo">签到信息类</param>
         /// <returns>返回的bool来判断是否发送成功</returns>
         [OperationContract(IsOneWay = false)]
-        new bool SendSignInfoToServer(PersonSignInfo signInfo);
+        bool SendSignInfoToServer(PersonSignInfo signInfo);
 
         /// <summary>
         /// 向服务端发送用户状态信息
@@ -69,7 +69,7 @@ namespace WCFSocket.CommunicateManager.Agreement
         /// <param name="stateInfo">用户状态信息类</param>
         /// <returns>返回的bool判断是否发送成功</returns>
         [OperationContract(IsOneWay = false)]
-        new bool SendStateInfoToServer(string userNickName, PersonStateInfo state, string message);
+        bool SendStateInfoToServer(string userNickName, PersonStateInfo state, string message);
         /// <summary>
         /// 发送全部签到信息至客户端
         /// </summary>
@@ -83,25 +83,25 @@ namespace WCFSocket.CommunicateManager.Agreement
         /// <param name="userName">给定的UserName</param>
         /// <returns>返回值为String类型的Mac地址</returns>
         [OperationContract(IsOneWay = false)]
-        new string ReceiveMacAddress(string userName);
+        string ReceiveMacAddress(string userName);
         /// <summary>
         /// 从服务端接收（课表信息）
         /// </summary>
         /// <returns>返回课表信息类</returns>
         [OperationContract(IsOneWay = false)]
-        new PictureInfo ReceivePictureFromServer(string userName, TimetableAndExpPic ttAndEP);
+        PictureInfo ReceivePictureFromServer(string userName, TimetableAndExpPic ttAndEP);
         /// <summary>
         /// 从服务端接收今日是否已签到
         /// </summary>
         /// <returns>返回是否已签到</returns>
         [OperationContract(IsOneWay = false)]
-        new bool ReceiveSignInfoFromServer();
+        bool ReceiveSignInfoFromServer();
         /// <summary>
         /// 从服务端接收所有的签到信息
         /// </summary>
         /// <returns>返回签到信息的集合</returns>
         [OperationContract(IsOneWay = false)]
-        new ObservableCollection<PersonSignInfo> ReceiveAllSignInfoFromServer();
+        ObservableCollection<PersonSignInfo> ReceiveAllSignInfoFromServer();
     }
     /// <summary>
     /// 服务端对客户端的要求在ICallBackServices里定义
