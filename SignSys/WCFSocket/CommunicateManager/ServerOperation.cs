@@ -10,9 +10,10 @@ using System.ServiceModel.Description;
 using System.ServiceModel.Configuration;
 using WCFSocket.CommunicateManager.Agreement;
 using PublicBaseClassProj;
+using System.Windows.Forms;
 
 namespace WCFSocket.CommunicateManager
-{  
+{
     public static class ServerOperation
     {
         public static ServiceHost host;
@@ -33,7 +34,7 @@ namespace WCFSocket.CommunicateManager
             }
             catch (Exception)
             {
-
+                throw new Exception();
             }
             return tip;
         }

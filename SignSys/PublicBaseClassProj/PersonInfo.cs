@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 namespace PublicBaseClassProj
 {
     [DataContract]
-    public class PersonInfo : NotifyPropertyChangedBase
+    public class PersonInfo 
     {
         private string _userNickName;
-        [DataMember]
-        public string UserNickName { get => _userNickName; set { _userNickName = value; OnPropertyChanged("UserNickName"); } }
 
         private string _userRealName;
-        [DataMember]
-        public string UserRealName { get => _userRealName; set { _userRealName = value; OnPropertyChanged("UserRealName"); } }
+        
 
         private string _passWord;
-        [DataMember]
-        public string PassWord { get => _passWord; set { _passWord = value; OnPropertyChanged("PassWork"); } }
+      
 
         private string _macAddress;
         [DataMember]
-        public string MacAddress { get => _macAddress; set { _macAddress = value; OnPropertyChanged("MacAddress"); } }
-
+        public string UserNickName { get => _userNickName; set => _userNickName = value; }
+        [DataMember]
+        public string UserRealName { get => _userRealName; set => _userRealName = value; }
+        [DataMember]
+        public string PassWord { get => _passWord; set => _passWord = value; }
+        [DataMember]
+        public string MacAddress { get => _macAddress; set => _macAddress = value; }
     }
 }

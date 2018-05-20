@@ -20,8 +20,12 @@ namespace WCFSocket.CommunicateManager.Agreement
         ICallBackServices client = OperationContext.Current.GetCallbackChannel<ICallBackServices>();//回调接口
         private static readonly object InstObj = new object();//单一实例 
         private static PersonInfo person;
-        IGetData getData =new GetDataHelper();
-        ISendDataToDB sendDataToDB=new SendDataHelper();
+        IGetData getData = new GetDataHelper();
+        ISendDataToDB sendDataToDB = new SendDataHelper();
+
+        public event Action ClientDisconnection;
+        public event Action ClientReconnection;
+
         public bool SendPerosnInfoToServer(PersonInfo personInfo)
         {
             bool tip = false;
@@ -163,19 +167,6 @@ namespace WCFSocket.CommunicateManager.Agreement
             }
         }
 
-        public bool SendChangePersonInfoToDB(PersonInfo personInfo)
-        {
-            bool tip = false;
-            try
-            {
-                tip = sendDataToDB.SendChangePersonInfoToDB(personInfo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return tip;
-        }
 
         public string ReceiveMacAddress(string userName)
         {
@@ -195,6 +186,25 @@ namespace WCFSocket.CommunicateManager.Agreement
         public ObservableCollection<PersonSignInfo> ReceiveAllSignInfoFromServer()
         {
             return getData.ReceiveAllSignInfoFromServer(person);
+        }
+
+        public PictureInfo ReceivePictureFromServer(TimetableAndExpPic ttAndEP)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SendPasswordToServer(PersonInfo personInfo)
+        {
+            bool tip = false;
+            try
+            {
+                tip = sendDataToDB.SendChangePersonInfoToDB(personInfo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return tip;
         }
     }
 }
