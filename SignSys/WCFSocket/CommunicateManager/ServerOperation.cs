@@ -10,10 +10,9 @@ using System.ServiceModel.Description;
 using System.ServiceModel.Configuration;
 using WCFSocket.CommunicateManager.Agreement;
 using PublicBaseClassProj;
-using System.Windows.Forms;
 
 namespace WCFSocket.CommunicateManager
-{
+{  
     public static class ServerOperation
     {
         public static ServiceHost host;
@@ -26,16 +25,16 @@ namespace WCFSocket.CommunicateManager
         public static bool SetConnectionToClient()
         {
             bool tip = false;
-            try
-            {
+            //try
+            //{
                 host = new ServiceHost(typeof(Service));
                 host.Open();
                 tip = true;
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
+            //}
+            //catch (Exception)
+            //{
+
+            //}
             return tip;
         }
         /// <summary>
