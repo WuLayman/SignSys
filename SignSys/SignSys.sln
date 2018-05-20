@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeverToDB", "SeverToDB\Seve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManager.ModifyProfile", "DataManager.ModifyProfile\DataManager.ModifyProfile.csproj", "{079FF451-FDBF-44E9-AFFD-4EA611119FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I_communication component", "..\..\..\..\..\QQ接受\I_communication component\I_communication component.csproj", "{1A992A45-2E3B-4A6A-8069-792739369409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I_communication component", "I_communication component\I_communication component.csproj", "{1A992A45-2E3B-4A6A-8069-792739369409}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
