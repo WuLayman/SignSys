@@ -15,11 +15,11 @@ namespace DataManager.HistorySign.ViewModels
         AllHistroySign _sign;
         ObservableCollection<AllHistroySign> _obAllSign;
         ObservableCollection<PersonSignInfo> _obHistorySign;
-        public ObservableCollection<PersonSignInfo> ObHistorySign { get => _obHistorySign; set { _obHistorySign = value; OnPropertyChanged("ObHistorySign"); } }
+        public ObservableCollection<PersonSignInfo> ObHistorySign { get => _obHistorySign; set { _obHistorySign = value; OnProperyChanged("ObHistorySign"); } }
 
-        public ObservableCollection<AllHistroySign> ObAllSign { get => _obAllSign; set { _obAllSign = value; OnPropertyChanged("ObAllSign"); } }
+        public ObservableCollection<AllHistroySign> ObAllSign { get => _obAllSign; set { _obAllSign = value; OnProperyChanged("ObAllSign"); } }
 
-        public AllHistroySign Sign { get => _sign; set { _sign = value; OnPropertyChanged("Sign"); } }
+        public AllHistroySign Sign { get => _sign; set { _sign = value; OnProperyChanged("Sign"); } }
 
         public HistorySignViewModel()
         {
@@ -50,9 +50,9 @@ namespace DataManager.HistorySign.ViewModels
         string _data;
         bool _isSign;
         string _exactData;
-        public string Data { get => _data; set { _data = value; OnPropertyChanged("ShortData"); } }
-        public string ExactData { get => _exactData; set { _exactData = value; OnPropertyChanged("LongData"); } }
-        public bool IsSign { get => _isSign; set { _isSign = value; OnPropertyChanged("IsSign"); } }
+        public string Data { get => _data; set { _data = value; OnProperyChanged("ShortData"); } }
+        public string ExactData { get => _exactData; set { _exactData = value; OnProperyChanged("LongData"); } }
+        public bool IsSign { get => _isSign; set { _isSign = value; OnProperyChanged("IsSign"); } }
 
     }
 }

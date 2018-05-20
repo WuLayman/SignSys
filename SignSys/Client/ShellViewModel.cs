@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client
+namespace ClientProj
 {
     public class ShellViewModel : IShellViewModel
     {
-        IRegionManager _regionManager;
-        IUnityContainer _container;
+        //IRegionManager _regionManager;
+        //IUnityContainer _container;
 
 
         private bool _isBusy;

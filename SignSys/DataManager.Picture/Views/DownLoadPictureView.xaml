@@ -6,7 +6,6 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:inf="clr-namespace:Client.Infrastructure;assembly=Client.Infrastructure"
-             xmlns:person="clr-namespace:Person;assembly=Person"
              mc:Ignorable="d" >
     <UserControl.Resources>
         <ResourceDictionary>

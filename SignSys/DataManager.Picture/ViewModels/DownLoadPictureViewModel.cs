@@ -1,4 +1,5 @@
-﻿using Client.Infrastructure;
+﻿using AllInterface.AllInterfaceProj.PublicBaseInterface;
+using Client.Infrastructure;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
 using Prism.Regions;
@@ -20,13 +21,16 @@ namespace DataManager.Picture.ViewModels
         IUnityContainer _container;
         IRegionManager _regionManager;
 
+        IReceiveInfoFromServer receiveInfoFromServer = null;
+
+
         public IEnumerable<TimetableAndExpPic> BingingTTAndEP
         {
             get { return Enum.GetValues(typeof(TimetableAndExpPic)).Cast<TimetableAndExpPic>(); }
         }
 
         TimetableAndExpPic _selectedTTAndEP;
-        public TimetableAndExpPic SelectedTTAndEP { get => _selectedTTAndEP; set { _selectedTTAndEP = value; OnPropertyChanged("SelectedTTAndEP"); } }
+        public TimetableAndExpPic SelectedTTAndEP { get => _selectedTTAndEP; set { _selectedTTAndEP = value; OnProperyChanged("SelectedTTAndEP"); } }
 
         public DelegateCommand<object> DownPictureCommand { get; set; }
         public DelegateCommand ReturnHomePageCommand { get; set; }
@@ -54,7 +58,7 @@ namespace DataManager.Picture.ViewModels
             //查看课表
             var image = obj as Image;
 
-            PictureInfo pictureInfo = InterfaceClass.ClientInterface.ReceivePictureFromServer(StaticProperty.staticUserName, SelectedTTAndEP);
+            PictureInfo pictureInfo = receiveInfoFromServer.ReceivePictureFromServer(StaticProperty.staticUserName, SelectedTTAndEP);
             if (pictureInfo == null)
             {
                 MessageBox.Show("查看失败");

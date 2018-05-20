@@ -1,4 +1,5 @@
-﻿using Client.Infrastructure;
+﻿using AllInterface.AllInterfaceProj.PublicBaseInterface;
+using Client.Infrastructure;
 using Microsoft.Practices.Unity;
 using Microsoft.Win32;
 using Prism.Commands;
@@ -30,6 +31,8 @@ namespace DataManager.Picture.ViewModels
         public DelegateCommand<object> UpLoadPictureCommand { get; set; }
         public DelegateCommand ReturnHomePageCommand { get; set; }
 
+        ISendInfoToServer sendInfoToServer = null;
+
         public UpLoadPictureViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -58,7 +61,7 @@ namespace DataManager.Picture.ViewModels
             pictureInfo.UserNickName = StaticProperty.staticUserName;
             pictureInfo.TtAndEP = e;
 
-            if (InterfaceClass.ClientInterface.SendPictureInfoToServer(pictureInfo))
+            if (sendInfoToServer.SendPictureInfoToServer(pictureInfo))
             {
                 MessageBox.Show("上传成功");
             }

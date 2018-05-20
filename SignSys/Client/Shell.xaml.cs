@@ -1,4 +1,5 @@
-﻿using Client.Infrastructure;
+﻿using AllInterfaceProj.ClientInterface;
+using Client.Infrastructure;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,13 @@ namespace ClientProj
     /// </summary>
     public partial class Shell : MetroWindow, IShell
     {
+        IClientInterfaceProj clientInterfaceProj = null;
+
         public Shell(IShellViewModel viewModel)
         {
             InitializeComponent();
             ViewModel = viewModel;
+            clientInterfaceProj.Star();
         }
 
         public IShellViewModel ViewModel

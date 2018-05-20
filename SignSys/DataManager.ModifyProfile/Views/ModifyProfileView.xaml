@@ -56,16 +56,20 @@
                 <DockPanel Grid.Row="2">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="CropPortrait" 
                                          Foreground="{Binding  Path=BorderBrush}"/>
-                    <TextBox Margin="3" 
+                    <TextBox Margin="3" Text="{Binding Port}"
                              VerticalAlignment="Center"/>
                 </DockPanel>
 
                 <DockPanel Grid.Row="3">
-                    <Button VerticalAlignment="Center"
+                    <!--<Button VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Style="{StaticResource MaterialDesignFlatButton}"
-                        Command="{Binding }"
-                        Content="更改"/>
+                        Command="{Binding ChangedIpAndPortCommand}"
+                        Content="更改"/>-->
+                    <UniformGrid Columns="2">
+                        <Button Content="确认修改" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ChangedIpAndPortCommand}"/>
+                        <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ReturnHomePageCommand}" />
+                    </UniformGrid>
                 </DockPanel>
             </Grid>
 

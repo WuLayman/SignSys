@@ -13,6 +13,8 @@ using System.Windows;
 using System.Threading;
 using Prism.Mvvm;
 using PublicBaseClassProj;
+using AllInterface.AllInterfaceProj.PublicBaseInterface;
+using AllInterfaceProj.ClientInterface;
 
 namespace DataManager.Title.ViewsModels
 {
@@ -22,6 +24,9 @@ namespace DataManager.Title.ViewsModels
         private IUnityContainer _container;
         private IEventAggregator _aggregator;
 
+        ISendInfoToServer sendInfoToServer = null;
+        IReceiveInfoFromServer receiveInfoFromServer = null;
+        IClientInterfaceProj clientInterfaceProj = null;
 
         private string _userName;
         private bool _isEnabled = true;
@@ -40,6 +45,7 @@ namespace DataManager.Title.ViewsModels
         public DelegateCommand LeaveCommand { get; set; }
         public DelegateCommand ModifyPasswordCommand { get; set; }
         public DelegateCommand SignCommand { get; set; }
+        public DelegateCommand ModifyProfileCommand { get; set; }
 
         #endregion
 
@@ -57,9 +63,15 @@ namespace DataManager.Title.ViewsModels
             LeaveCommand = new DelegateCommand(Leave, NotLand);
             ModifyPasswordCommand = new DelegateCommand(ModifyPassword, NotLand);
             SignCommand = new DelegateCommand(Sign, CanNotSign);
-
+            ModifyProfileCommand = new DelegateCommand(ModifyProfile);
             //UserName = StaticProperty.staticUserName;
             _aggregator.GetEvent<UserNameChangedEvent>().Subscribe(UserNameChange);
+        }
+
+        private void ModifyProfile()
+        {
+            var uri = new Uri("ModifyProfile", UriKind.Relative);
+            _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
         }
 
         private void UserNameChange(string obj)
@@ -105,7 +117,7 @@ namespace DataManager.Title.ViewsModels
         {
             //退出登录
             UserName = null;
-            InterfaceClass.ClientInterface.Leave();
+            clientInterfaceProj.Leave();
             var uri = new Uri("Land", UriKind.Relative);
             _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
         }
@@ -156,7 +168,7 @@ namespace DataManager.Title.ViewsModels
                 IsSign = true
             };
 
-            if (InterfaceClass.ClientInterface.SendSignInfoToServer(personSignInfo))
+            if (sendInfoToServer.SendSignInfoToServer(personSignInfo))
             {
                 MessageBox.Show("成功签到");
                 _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
@@ -176,7 +188,7 @@ namespace DataManager.Title.ViewsModels
             }
             else
             {
-                if (InterfaceClass.ClientInterface.ReceiveSignInfoFromServer())
+                if (receiveInfoFromServer.ReceiveSignInfoFromServer())
                 {
                     _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
                     return false;

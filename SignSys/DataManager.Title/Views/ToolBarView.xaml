@@ -93,9 +93,9 @@
                             <materialDesign:PackIcon Kind="BookmarkCheck"/>
                         </StackPanel>
                     </Button>
-                    <Button DockPanel.Dock="Left" ToolTip="更换颜色">
+                    <Button DockPanel.Dock="Left" ToolTip="修改配置文件" Command="{Binding ModifyProfileCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconOcticons Kind="Paintcan"/>
+                            <iconPacks:PackIconOcticons Kind="Project"/>
                         </StackPanel>
                     </Button>
                     <Button DockPanel.Dock="Right" ToolTip="签到" IsEnabled="{Binding IsEnabled, Mode=TwoWay}" Command="{Binding SignCommand}">

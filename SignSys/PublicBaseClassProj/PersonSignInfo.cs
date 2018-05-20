@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace PublicBaseClassProj
 {
     [DataContract]
-    public class PersonSignInfo 
+    public class PersonSignInfo
     {
         private string _userNickName;
         private DateTime? _signTime;
-          
+
         private bool _isSign;
         [DataMember]
         public string UserNickName { get => _userNickName; set => _userNickName = value; }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using AllInterface.AllInterfaceProj.PublicBaseInterface;
 using Client.Infrastructure;
 using DataManager.Land.Views;
 using Microsoft.Practices.Unity;
@@ -25,7 +26,7 @@ namespace DataManager.Land.ViewsModels
         public ILandView View { get; set; }
 
         bool _isBusy = false;
-        public bool IsBusy { get => _isBusy; set { _isBusy = value; OnPropertyChanged("IsBusy"); } }
+        public bool IsBusy { get => _isBusy; set { _isBusy = value; OnProperyChanged("IsBusy"); } }
 
         public DelegateCommand<object> LoginCommand { get; set; }
         public DelegateCommand<object> EnterLoginCommand { get; set; }
@@ -89,9 +90,11 @@ namespace DataManager.Land.ViewsModels
                 //将用户名给成静态属性
                 StaticProperty.staticUserName = UserName;
                 _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
-                InterfaceClass.ClientInterface.Star();
 
-                string macAddress = InterfaceClass.ClientInterface.ReceiveMacAddress(UserName);
+                ISendInfoToServer sendInfoToServer = null;
+                IReceiveInfoFromServer receiveInfoFromServer = null;
+
+                string macAddress = receiveInfoFromServer.ReceiveMacAddress(UserName);
 
                 if (macAddress == null)
                 {
@@ -100,7 +103,7 @@ namespace DataManager.Land.ViewsModels
                         UserNickName = UserName,
                         PassWord = pwb.Password
                     };
-                    if (InterfaceClass.ClientInterface.SendPerosnInfoToServer(person))
+                    if (sendInfoToServer.SendPerosnInfoToServer(person))
                     {
                         MessageBox.Show("登录成功");
                         //TODO:跳到修改密码界面
@@ -121,7 +124,7 @@ namespace DataManager.Land.ViewsModels
                         PassWord = pwb.Password,
                         MacAddress = GetMacAddress()
                     };
-                    if (InterfaceClass.ClientInterface.SendPerosnInfoToServer(person))
+                    if (sendInfoToServer.SendPerosnInfoToServer(person))
                     {
                         //跳到HomePageView
                         MessageBox.Show("登录成功");
@@ -199,7 +202,7 @@ namespace DataManager.Land.ViewsModels
         {
             get => _userName;
             //set { SetProperty(ref _userName, value, nameof(UserName)); LoginCommand.RaiseCanExecuteChanged(); }
-            set { _userName = value; OnPropertyChanged("UserName"); }
+            set { _userName = value; OnProperyChanged("UserName"); }
         }
 
 

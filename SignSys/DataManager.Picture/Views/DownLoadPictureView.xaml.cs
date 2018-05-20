@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataManager.Picture.ViewModels;
-using Person;
 
 namespace DataManager.Picture.Views
 {

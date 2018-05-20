@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using AllInterface.AllInterfaceProj.PublicBaseInterface;
 using Client.Infrastructure;
 using DataManager.ModifyPasswork.Views;
-using I_communication_component.MyWcf;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
 using Prism.Regions;
@@ -31,6 +31,10 @@ namespace DataManager.ModifyPasswork.ViewsModels
         public string FirstPassword { get => _firstPassword; set => _firstPassword = value; }
         public string SecondPassword { get => _SecondPassword; set => _SecondPassword = value; }
 
+
+        ISendInfoToServer sendInfoToServer = null;
+        IReceiveInfoFromServer receiveInfoFromServer = null;
+
         public ModifyPasswordViewModel(IRegionManager regionManager, IUnityContainer container)
         {
             _container = container;
@@ -41,7 +45,7 @@ namespace DataManager.ModifyPasswork.ViewsModels
 
         private void Logon()
         {
-            if (InterfaceClass.ClientInterface.ReceiveMacAddress(StaticProperty.staticUserName) == null)
+            if (receiveInfoFromServer.ReceiveMacAddress(StaticProperty.staticUserName) == null)
             {
                 //返回登录页面
                 var uri = new Uri("Land", UriKind.Relative);
@@ -86,7 +90,7 @@ namespace DataManager.ModifyPasswork.ViewsModels
                     MacAddress = GetMacAddress()
                 };
 
-                if (InterfaceClass.ClientInterface.SendChangePersonInfoToDB(person))
+                if (sendInfoToServer.SendPasswordToServer(person))
                 {
 
                     MessageBox.Show("修改成功");

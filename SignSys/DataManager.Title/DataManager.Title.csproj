@@ -155,6 +155,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AllInterfaceProj\AllInterfaceProj.csproj">
+      <Project>{F20B8CD6-7A0D-4E0F-909C-580146956CC5}</Project>
+      <Name>AllInterfaceProj</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj">
       <Project>{75c0b462-2871-485f-b33a-85292effd405}</Project>
       <Name>Client.Infrastructure</Name>
