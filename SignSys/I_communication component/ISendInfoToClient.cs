@@ -14,11 +14,13 @@ using System.Threading.Tasks;
 namespace I_communication_component
 {
     public class ClientOperation: IClientInterfaceProj, IReceiveInfoFromServer, ISendInfoToServer
-    {      
+    {
         MyWcf.ServiceClient client = null;
         CallBack back = null;
         PersonInfo personInfo = null;
         Task task = null;
+        static CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
         public ClientOperation()
         {
             bool n = false;
@@ -36,8 +38,8 @@ namespace I_communication_component
         }
         public void SetBreaken(bool x)
         {
-            if (breaken !=x&&breaken ==false)
-            {              
+            if (breaken != x && breaken == false)
+            {
                 clientdisconnection();
             }
             breaken = x;
@@ -52,13 +54,54 @@ namespace I_communication_component
         }
         public void Setreconnection(bool x)
         {
-            if (reconnection !=x&&reconnection ==false)
-            {              
+            if (reconnection != x && reconnection == false)
+            {
                 clientreconnection();
             }
-            reconnection =x;
+            reconnection = x;
         }
         #endregion
+        public void Run(CancellationToken ct)
+        {
+            using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
+            {
+                IService proxy = channelFactory.CreateChannel();
+                back = new CallBack();
+                InstanceContext context = new InstanceContext(back);
+                using (proxy as IDisposable)
+                {
+                    proxy.Login(personInfo);
+                    while (true)
+                    {
+                        ct.ThrowIfCancellationRequested();
+                        Thread.Sleep(3000);
+                        try
+                        {
+                            SetBreaken(false);
+                            Setreconnection(true);
+                            proxy.Update(personInfo);
+                        }
+                        catch
+                        {
+                            SetBreaken(true);
+                            Setreconnection(false);
+                            try
+                            {
+                                Console.WriteLine("正在重连");
+                                proxy = channelFactory.CreateChannel();
+                                proxy.Login(personInfo);
+                                client = new ServiceClient(context);
+                                client.SendPerosnInfoToServer(personInfo);
+                            }
+                            catch
+                            {
+                                Console.WriteLine("重连异常");
+                            }
+                        }
+                    }
+                }
+            }
+        }
         /// <summary>
         /// 建立连接,并产生接受类.
         /// </summary>
@@ -91,44 +134,7 @@ namespace I_communication_component
             Star();
             back = new CallBack();
             InstanceContext context = new InstanceContext(back);
-            task = new Task(() =>
-            {
-                using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
-                {
-                    IService proxy = channelFactory.CreateChannel();
-                    using (proxy as IDisposable)
-                    {
-                        proxy.Login(personInfo);
-                        while (true)
-                        {
-                            Thread.Sleep(3000);
-                            try
-                            {
-                                SetBreaken(false);
-                                Setreconnection(true);
-                                proxy.Update(personInfo);
-                            }
-                            catch
-                            {
-                                SetBreaken(true);
-                                Setreconnection(false);
-                                try
-                                {
-                                    Console.WriteLine("正在重连");
-                                    proxy = channelFactory.CreateChannel();
-                                    proxy.Login(personInfo);
-                                    client = new ServiceClient(context);
-                                    client.SendPerosnInfoToServer(personInfo);
-                                }
-                                catch
-                                {
-                                    Console.WriteLine("重连异常");
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+            task = new Task(() => { Run(ct); }, ct);
             task.Start();
             try
             {
@@ -169,7 +175,7 @@ namespace I_communication_component
         /// <returns></returns>
         public bool SendPasswordToServer(PersonInfo personInfo)
         {
-            return client.SendPasswordToServer (personInfo);
+            return client.SendPasswordToServer(personInfo);
         }
 
         /// <summary>
@@ -232,9 +238,8 @@ namespace I_communication_component
         /// </summary>
         public void Leave()
         {
-            task.Dispose();
+            cts.Cancel();
             client.Leave(personInfo);
         }
-
     }
 }
