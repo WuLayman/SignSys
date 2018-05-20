@@ -1,6 +1,4 @@
-﻿using Client.Infrastructure;
-using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,24 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataManager.ModifyProfile.ViewModels;
 
-namespace ClientProj
+namespace DataManager.ModifyProfile.Views
 {
     /// <summary>
-    /// Shell.xaml 的交互逻辑
+    /// ModifyProfileView.xaml 的交互逻辑
     /// </summary>
-    public partial class Shell : MetroWindow, IShell
+    public partial class ModifyProfileView : UserControl, IModifyProfileView
     {
-        public Shell(IShellViewModel viewModel)
+        public ModifyProfileView(IModifyProfileViewModel viewModel)
         {
             InitializeComponent();
             ViewModel = viewModel;
         }
 
-        public IShellViewModel ViewModel
+        public IModifyProfileViewModel ViewModel
         {
-            get { return (IShellViewModel)DataContext; }
+            get { return (IModifyProfileViewModel)DataContext; }
             set { DataContext = value; }
         }
     }

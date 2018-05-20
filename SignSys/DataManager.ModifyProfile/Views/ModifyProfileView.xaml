@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="DataManager.ModifyProfile.Views.ModifyProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:DataManager.ModifyProfile.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+        <materialDesign:Card VerticalAlignment="Stretch" 
+                         HorizontalAlignment="Stretch" 
+                         MaxWidth="400" 
+                         MaxHeight="300">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="39*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="修改配置文件：第一个填IP，第二个填端口号（切记不能瞎填)" Foreground="Red" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Grid Grid.Row="1" Margin="5" FocusManager.FocusedElement="{Binding ElementName=UserName}">
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="DockPanel">
+                            <Setter Property="Margin" Value="20 3"/>
+                        </Style>
+                    </ResourceDictionary>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Paperclip"  Foreground="{Binding Path=BorderBrush}"/>
+
+                    <TextBox x:Name="UserName"  Margin="3"  Text="{Binding Ip}" VerticalAlignment="Center"/>
+
+                </DockPanel>
+                <DockPanel Grid.Row="2">
+                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="CropPortrait" 
+                                         Foreground="{Binding  Path=BorderBrush}"/>
+                    <TextBox Margin="3" 
+                             VerticalAlignment="Center"/>
+                </DockPanel>
+
+                <DockPanel Grid.Row="3">
+                    <Button VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Command="{Binding }"
+                        Content="更改"/>
+                </DockPanel>
+            </Grid>
+
+        </Grid>
+        </materialDesign:Card>
+</UserControl>

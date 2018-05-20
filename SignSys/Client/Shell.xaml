@@ -39,6 +39,8 @@
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static inf:RegionNames.TitleRegion}"/>
         <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ToolbarRegion}"/>
-        <ContentControl Grid.Row="2"  prism:RegionManager.RegionName="{x:Static inf:RegionNames.LandRegion}"/>
+        <toolkit:BusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}" BusyContent="Loading Service....">
+            <ContentControl Grid.Row="2"  prism:RegionManager.RegionName="{x:Static inf:RegionNames.LandRegion}"/>
+        </toolkit:BusyIndicator>
     </Grid>
 </mahapp:MetroWindow>
