@@ -1,6 +1,5 @@
 ﻿using AllInterface.AllInterfaceProj.PublicBaseInterface;
 using AllInterfaceProj.ClientInterface;
-using Easy.MessageHub;
 using I_communication_component.MyWcf;
 using PublicBaseClassProj;
 using System;
@@ -64,11 +63,11 @@ namespace I_communication_component
         #endregion
         public void Run(CancellationToken ct)
         {
+            back = new CallBack();
+            InstanceContext context = new InstanceContext(back);
             using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
             {
-                IService proxy = channelFactory.CreateChannel();
-                back = new CallBack();
-                InstanceContext context = new InstanceContext(back);
+                IService proxy = channelFactory.CreateChannel();               
                 using (proxy as IDisposable)
                 {
                     proxy.Login(personInfo);

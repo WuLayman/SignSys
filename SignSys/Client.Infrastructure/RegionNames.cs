@@ -18,5 +18,6 @@ namespace Client.Infrastructure
         public static string HistorySignRegion = "HistorySignRegion";
         public static string HomePageRegion = "HomePageRegion";
         public static string ModifyProfileRegion = "ModifyProfileRegion";
+        public static string ShellRegion = "ShellRegion";
     }
 }

@@ -95,7 +95,7 @@
                     </Button>
                     <Button DockPanel.Dock="Left" ToolTip="修改配置文件" Command="{Binding ModifyProfileCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconOcticons Kind="Project"/>
+                            <materialDesign:PackIcon Kind="Projector"/>
                         </StackPanel>
                     </Button>
                     <Button DockPanel.Dock="Right" ToolTip="签到" IsEnabled="{Binding IsEnabled, Mode=TwoWay}" Command="{Binding SignCommand}">

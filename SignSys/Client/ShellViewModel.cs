@@ -1,4 +1,5 @@
-﻿using ClientProj;
+﻿using Client.Infrastructure;
+using ClientProj;
 using Microsoft.Practices.Unity;
 using Prism.Regions;
 using System;
@@ -11,11 +12,20 @@ namespace ClientProj
 {
     public class ShellViewModel : IShellViewModel
     {
-        //IRegionManager _regionManager;
-        //IUnityContainer _container;
+        IRegionManager _regionManager;
+        IUnityContainer _container;
 
 
         private bool _isBusy;
+
+        public ShellViewModel()
+        {
+            //_container = container;
+            //_regionManager = regionManager;
+
+            InterfaceClass.ClientInterface.ClientDisconnection += new Action(ClientDisconnection);
+            InterfaceClass.ClientInterface.ClientReconnection += new Action(ClientReconnection);
+        }
 
         public bool IsBusy { get => _isBusy; set => _isBusy = value; }
 

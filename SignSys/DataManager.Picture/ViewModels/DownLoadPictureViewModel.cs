@@ -21,9 +21,6 @@ namespace DataManager.Picture.ViewModels
         IUnityContainer _container;
         IRegionManager _regionManager;
 
-        IReceiveInfoFromServer receiveInfoFromServer = null;
-
-
         public IEnumerable<TimetableAndExpPic> BingingTTAndEP
         {
             get { return Enum.GetValues(typeof(TimetableAndExpPic)).Cast<TimetableAndExpPic>(); }
@@ -58,7 +55,7 @@ namespace DataManager.Picture.ViewModels
             //查看课表
             var image = obj as Image;
 
-            PictureInfo pictureInfo = receiveInfoFromServer.ReceivePictureFromServer(StaticProperty.staticUserName, SelectedTTAndEP);
+            PictureInfo pictureInfo = InterfaceClass.ClientInterface.ReceivePictureFromServer(StaticProperty.staticUserName, SelectedTTAndEP);
             if (pictureInfo == null)
             {
                 MessageBox.Show("查看失败");

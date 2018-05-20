@@ -163,6 +163,10 @@
       <Project>{75c0b462-2871-485f-b33a-85292effd405}</Project>
       <Name>Client.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\I_communication component\I_communication component.csproj">
+      <Project>{1a992a45-2e3b-4a6a-8069-792739369409}</Project>
+      <Name>I_communication component</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PublicBaseClassProj\PublicBaseClassProj.csproj">
       <Project>{E8F48975-79D1-450A-8C90-16A8EBE80DB2}</Project>
       <Name>PublicBaseClassProj</Name>

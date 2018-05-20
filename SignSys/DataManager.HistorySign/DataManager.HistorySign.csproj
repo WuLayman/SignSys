@@ -122,9 +122,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\AllInterfaceProj\AllInterfaceProj.csproj">
+      <Project>{F20B8CD6-7A0D-4E0F-909C-580146956CC5}</Project>
+      <Name>AllInterfaceProj</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj">
       <Project>{75C0B462-2871-485F-B33A-85292EFFD405}</Project>
       <Name>Client.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_communication component\I_communication component.csproj">
+      <Project>{1A992A45-2E3B-4A6A-8069-792739369409}</Project>
+      <Name>I_communication component</Name>
     </ProjectReference>
     <ProjectReference Include="..\PublicBaseClassProj\PublicBaseClassProj.csproj">
       <Project>{E8F48975-79D1-450A-8C90-16A8EBE80DB2}</Project>

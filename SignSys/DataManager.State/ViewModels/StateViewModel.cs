@@ -22,8 +22,6 @@ namespace DataManager.State.ViewModels
         string _leaveReson;
         public string LeaveReson { get => _leaveReson; set { _leaveReson = value; OnProperyChanged("LeaveReson"); } }
 
-        ISendInfoToServer sendInfoToServer = null;
-
         public DelegateCommand<object> SaveCommand { get; set; }
         public DelegateCommand ReturnHomePageCommand { get; set; }
 
@@ -48,7 +46,7 @@ namespace DataManager.State.ViewModels
             var comboBox = obj as ComboBox;
             string str = comboBox.Text;
 
-            bool b = sendInfoToServer.SendStateInfoToServer(StaticProperty.staticUserName, (PersonStateInfo)Enum.Parse(typeof(PersonStateInfo), str), LeaveReson);
+            bool b = InterfaceClass.ClientInterface.SendStateInfoToServer(StaticProperty.staticUserName, (PersonStateInfo)Enum.Parse(typeof(PersonStateInfo), str), LeaveReson);
             if (b)
             {
                 MessageBox.Show("上传成功");

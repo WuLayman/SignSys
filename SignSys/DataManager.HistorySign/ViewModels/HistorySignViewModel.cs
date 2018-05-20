@@ -1,4 +1,6 @@
-﻿using Client.Infrastructure;
+﻿using AllInterface.AllInterfaceProj.PublicBaseInterface;
+using Client.Infrastructure;
+using I_communication_component;
 using PublicBaseClassProj;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace DataManager.HistorySign.ViewModels
         AllHistroySign _sign;
         ObservableCollection<AllHistroySign> _obAllSign;
         ObservableCollection<PersonSignInfo> _obHistorySign;
+
         public ObservableCollection<PersonSignInfo> ObHistorySign { get => _obHistorySign; set { _obHistorySign = value; OnProperyChanged("ObHistorySign"); } }
 
         public ObservableCollection<AllHistroySign> ObAllSign { get => _obAllSign; set { _obAllSign = value; OnProperyChanged("ObAllSign"); } }
@@ -23,7 +26,7 @@ namespace DataManager.HistorySign.ViewModels
 
         public HistorySignViewModel()
         {
-            //ObHistorySign = InterfaceClass.ClientInterface.ReceiveAllSignInfoFromServer();
+            ObHistorySign = InterfaceClass.ClientInterface.ReceiveAllSignInfoFromServer();
 
 
             ObAllSign = new ObservableCollection<AllHistroySign>();

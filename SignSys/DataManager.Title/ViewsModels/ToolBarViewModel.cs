@@ -24,9 +24,6 @@ namespace DataManager.Title.ViewsModels
         private IUnityContainer _container;
         private IEventAggregator _aggregator;
 
-        ISendInfoToServer sendInfoToServer = null;
-        IReceiveInfoFromServer receiveInfoFromServer = null;
-        IClientInterfaceProj clientInterfaceProj = null;
 
         private string _userName;
         private bool _isEnabled = true;
@@ -117,7 +114,7 @@ namespace DataManager.Title.ViewsModels
         {
             //退出登录
             UserName = null;
-            clientInterfaceProj.Leave();
+            InterfaceClass.ClientInterface.Leave();
             var uri = new Uri("Land", UriKind.Relative);
             _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
         }
@@ -168,7 +165,7 @@ namespace DataManager.Title.ViewsModels
                 IsSign = true
             };
 
-            if (sendInfoToServer.SendSignInfoToServer(personSignInfo))
+            if (InterfaceClass.ClientInterface.SendSignInfoToServer(personSignInfo))
             {
                 MessageBox.Show("成功签到");
                 _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
@@ -188,7 +185,7 @@ namespace DataManager.Title.ViewsModels
             }
             else
             {
-                if (receiveInfoFromServer.ReceiveSignInfoFromServer())
+                if (InterfaceClass.ClientInterface.ReceiveSignInfoFromServer())
                 {
                     _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
                     return false;
