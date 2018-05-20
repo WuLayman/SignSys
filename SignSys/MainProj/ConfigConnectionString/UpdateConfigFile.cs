@@ -45,6 +45,7 @@ namespace MainProj.ConfigConnectionString
         public void UpdateStr(string connStr, string providerName)
         {
             var config = GetConfigExe();
+
             bool exist = false;
             if (config.ConnectionStrings.ConnectionStrings["Entities2"] != null)
             {
