@@ -34,9 +34,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Easy.MessageHub, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\C#\Project\ALL\SignSys\SignSys\packages\Easy.MessageHub.3.3.0\lib\net35\Easy.MessageHub.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -81,10 +78,6 @@
     <ProjectReference Include="..\AllInterfaceProj\AllInterfaceProj.csproj">
       <Project>{f20b8cd6-7a0d-4e0f-909c-580146956cc5}</Project>
       <Name>AllInterfaceProj</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Client\ClientProj.csproj">
-      <Project>{b932ca22-0b76-41fd-bb45-61ffc53073e8}</Project>
-      <Name>ClientProj</Name>
     </ProjectReference>
     <ProjectReference Include="..\PublicBaseClassProj\PublicBaseClassProj.csproj">
       <Project>{E8F48975-79D1-450A-8C90-16A8EBE80DB2}</Project>

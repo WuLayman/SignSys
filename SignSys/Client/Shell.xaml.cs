@@ -22,13 +22,15 @@ namespace ClientProj
     /// </summary>
     public partial class Shell : MetroWindow, IShell
     {
-        IClientInterfaceProj clientInterfaceProj = null;
 
-        public Shell(IShellViewModel viewModel)
+        public Shell()
         {
             InitializeComponent();
-            ViewModel = viewModel;
-            clientInterfaceProj.Star();
+            //ViewModel = viewModel;
+            ShellViewModel viewModel = new ShellViewModel();
+            DataContext = viewModel;
+
+            InterfaceClass.ClientInterface.Star();
         }
 
         public IShellViewModel ViewModel

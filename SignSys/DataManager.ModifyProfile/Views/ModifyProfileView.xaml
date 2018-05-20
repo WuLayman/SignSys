@@ -68,7 +68,7 @@
                         Content="更改"/>-->
                     <UniformGrid Columns="2">
                         <Button Content="确认修改" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ChangedIpAndPortCommand}"/>
-                        <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ReturnHomePageCommand}" />
+                        <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding ReturnHomePageCommand}"/>
                     </UniformGrid>
                 </DockPanel>
             </Grid>

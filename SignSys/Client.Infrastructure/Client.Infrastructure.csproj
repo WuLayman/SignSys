@@ -99,6 +99,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\I_communication component\I_communication component.csproj">
+      <Project>{1A992A45-2E3B-4A6A-8069-792739369409}</Project>
+      <Name>I_communication component</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

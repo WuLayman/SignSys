@@ -14,6 +14,7 @@ using DataManager.Picture.ViewModels;
 using DataManager.Picture;
 using DataManager.State;
 using DataManager.HistorySign;
+using DataManager.ModifyProfile;
 
 namespace ClientProj
 {
@@ -21,6 +22,7 @@ namespace ClientProj
     {
         protected override DependencyObject CreateShell()
         {
+            Container.RegisterType<ShellViewModel>();
             return Container.Resolve<Shell>();
         }
 
@@ -38,26 +40,15 @@ namespace ClientProj
         {
             ModuleCatalog catalog = new ModuleCatalog();
 
-
+            catalog.AddModule(typeof(ShellViewModule));
             catalog.AddModule(typeof(TitleModule));
             catalog.AddModule(typeof(LandViewModule));
             catalog.AddModule(typeof(ModifyPasswordViewModule));
+            catalog.AddModule(typeof(ModifyProfileModule));
             catalog.AddModule(typeof(PictureViewModule));
             catalog.AddModule(typeof(StateViewModule));
             catalog.AddModule(typeof(HistorySignViewModule));
             return catalog;
         }
-
-
-
-        //protected override void ConfigureModuleCatalog()
-        //{
-        //    Type coreModuleType = typeof(LandViewModule);//{ModuleName = coreModuleType.Name ,ModuleType = coreModuleType.AssemblyQualifiedName}
-        //    ModuleCatalog.AddModule(new ModuleInfo(coreModuleType.Name, coreModuleType.AssemblyQualifiedName));
-
-        //    Type coreModuleType1 = typeof(ModifyPasswordViewModule);//{ModuleName = coreModuleType.Name ,ModuleType = coreModuleType.AssemblyQualifiedName}
-        //    ModuleCatalog.AddModule(new ModuleInfo(coreModuleType1.Name, coreModuleType1.AssemblyQualifiedName));
-        //    base.ConfigureModuleCatalog();
-        //}
     }
 }

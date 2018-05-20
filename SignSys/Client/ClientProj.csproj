@@ -134,12 +134,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Connected Services\MyWcf\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="IShell.cs" />
     <Compile Include="IShellViewModel.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ShellViewModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,6 +165,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\MyWcf\Client.MyWcf.PersonSignInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MyWcf\Client.MyWcf.PictureInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MyWcf\PublicBaseClassProj.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MyWcf\service.wsdl" />
+    <None Include="Connected Services\MyWcf\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MyWcf\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\I_communication_component.MyWcf.PersonSignInfo.datasource" />
     <None Include="Properties\DataSources\I_communication_component.MyWcf.PictureInfo.datasource" />
@@ -179,6 +201,10 @@
       <Project>{75c0b462-2871-485f-b33a-85292effd405}</Project>
       <Name>Client.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataManager.ChangeBackgroundColor\DataManager.ChangeBackgroundColor.csproj">
+      <Project>{01c76934-37ce-48e3-975d-bcb2dfaeb19f}</Project>
+      <Name>DataManager.ChangeBackgroundColor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataManager.HistorySign\DataManager.HistorySign.csproj">
       <Project>{fb593c73-b2e4-402a-ac08-f2d3705723d0}</Project>
       <Name>DataManager.HistorySign</Name>
@@ -191,6 +217,10 @@
       <Project>{7a5e6e96-45a1-4f18-8b77-39709659d72a}</Project>
       <Name>DataManager.ModifyPasswork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataManager.ModifyProfile\DataManager.ModifyProfile.csproj">
+      <Project>{079ff451-fdbf-44e9-affd-4ea611119ffc}</Project>
+      <Name>DataManager.ModifyProfile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataManager.Picture\DataManager.Picture.csproj">
       <Project>{F0B42D47-14F5-498C-B0AC-59BBED86113A}</Project>
       <Name>DataManager.Picture</Name>
@@ -202,6 +232,10 @@
     <ProjectReference Include="..\DataManager.Title\DataManager.Title.csproj">
       <Project>{B56FF1E5-F818-49C2-9A8D-B6DC02A7F271}</Project>
       <Name>DataManager.Title</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_communication component\I_communication component.csproj">
+      <Project>{1a992a45-2e3b-4a6a-8069-792739369409}</Project>
+      <Name>I_communication component</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +259,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MyWcf\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyWcf\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyWcf\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyWcf\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,9 +32,6 @@ namespace DataManager.ModifyPasswork.ViewsModels
         public string SecondPassword { get => _SecondPassword; set => _SecondPassword = value; }
 
 
-        ISendInfoToServer sendInfoToServer = null;
-        IReceiveInfoFromServer receiveInfoFromServer = null;
-
         public ModifyPasswordViewModel(IRegionManager regionManager, IUnityContainer container)
         {
             _container = container;
@@ -45,7 +42,7 @@ namespace DataManager.ModifyPasswork.ViewsModels
 
         private void Logon()
         {
-            if (receiveInfoFromServer.ReceiveMacAddress(StaticProperty.staticUserName) == null)
+            if (InterfaceClass.ClientInterface.ReceiveMacAddress(StaticProperty.staticUserName) == null)
             {
                 //返回登录页面
                 var uri = new Uri("Land", UriKind.Relative);
@@ -82,6 +79,24 @@ namespace DataManager.ModifyPasswork.ViewsModels
             else
             {
                 #region  修改成功
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(FirstPassword);
+                byte[] macBytes = Encoding.UTF8.GetBytes(GetMacAddress());
+                if (passwordBytes.Length > macBytes.Length)
+                {
+                    for (int i = 0; i < macBytes.Length; i++)
+                    {
+                        passwordBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < passwordBytes.Length; i++)
+                    {
+                        macBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
+                    }
+                }
+
+                FirstPassword = passwordBytes.ToString();
 
                 PersonInfo person = new PersonInfo
                 {
@@ -90,7 +105,7 @@ namespace DataManager.ModifyPasswork.ViewsModels
                     MacAddress = GetMacAddress()
                 };
 
-                if (sendInfoToServer.SendPasswordToServer(person))
+                if (InterfaceClass.ClientInterface.SendPasswordToServer(person))
                 {
 
                     MessageBox.Show("修改成功");
@@ -147,7 +162,7 @@ namespace DataManager.ModifyPasswork.ViewsModels
             }
 
 
-            if (IsAllChar(password))
+            if (!IsAllChar(password))
             {
                 return false;
             }
@@ -193,7 +208,6 @@ namespace DataManager.ModifyPasswork.ViewsModels
                 return "unknown";
             }
         }
-
 
         #endregion
     }

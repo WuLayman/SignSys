@@ -22,8 +22,8 @@ namespace DataManager.ModifyProfile.ViewModels
         private string _ip;
         private string _port;
 
-        public DelegateCommand ChangedIpAndPortCommand;
-        public DelegateCommand ReturnHomePageCommand;
+        public DelegateCommand ChangedIpAndPortCommand { get; set; }
+        public DelegateCommand ReturnHomePageCommand { get; set; }
 
         public ModifyProfileViewModel(IRegionManager regionManager, IUnityContainer container)
         {
@@ -35,8 +35,17 @@ namespace DataManager.ModifyProfile.ViewModels
 
         private void ReturnHomePage()
         {
-            var uri = new Uri("HomePage", UriKind.Relative);
-            _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            if (StaticProperty.staticUserName == null)
+            {
+                var uri = new Uri("Land", UriKind.Relative);
+                _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            }
+            else
+            {
+                var uri = new Uri("HomePage", UriKind.Relative);
+                _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            }
+
         }
 
         private void ChangedIpAndPort()

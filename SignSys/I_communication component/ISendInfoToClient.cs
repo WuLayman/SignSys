@@ -1,6 +1,5 @@
 ﻿using AllInterface.AllInterfaceProj.PublicBaseInterface;
 using AllInterfaceProj.ClientInterface;
-using Easy.MessageHub;
 using I_communication_component.MyWcf;
 using PublicBaseClassProj;
 using System;

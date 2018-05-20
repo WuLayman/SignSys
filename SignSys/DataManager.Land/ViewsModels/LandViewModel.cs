@@ -91,10 +91,9 @@ namespace DataManager.Land.ViewsModels
                 StaticProperty.staticUserName = UserName;
                 _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
 
-                ISendInfoToServer sendInfoToServer = null;
-                IReceiveInfoFromServer receiveInfoFromServer = null;
 
-                string macAddress = receiveInfoFromServer.ReceiveMacAddress(UserName);
+
+                string macAddress = InterfaceClass.ClientInterface.ReceiveMacAddress(UserName);
 
                 if (macAddress == null)
                 {
@@ -103,7 +102,7 @@ namespace DataManager.Land.ViewsModels
                         UserNickName = UserName,
                         PassWord = pwb.Password
                     };
-                    if (sendInfoToServer.SendPerosnInfoToServer(person))
+                    if (InterfaceClass.ClientInterface.SendPerosnInfoToServer(person))
                     {
                         MessageBox.Show("登录成功");
                         //TODO:跳到修改密码界面
@@ -118,13 +117,32 @@ namespace DataManager.Land.ViewsModels
                 }
                 else
                 {
+                    byte[] passwordBytes = Encoding.UTF8.GetBytes(pwb.Password);
+                    byte[] macBytes = Encoding.UTF8.GetBytes(GetMacAddress());
+                    if (passwordBytes.Length > macBytes.Length)
+                    {
+                        for (int i = 0; i < passwordBytes.Length; i++)
+                        {
+                            passwordBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < macBytes.Length; i++)
+                        {
+                            passwordBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
+                        }
+                    }
+
+                    pwb.Password = passwordBytes.ToString();
+
                     PersonInfo person = new PersonInfo
                     {
                         UserNickName = UserName,
                         PassWord = pwb.Password,
                         MacAddress = GetMacAddress()
                     };
-                    if (sendInfoToServer.SendPerosnInfoToServer(person))
+                    if (InterfaceClass.ClientInterface.SendPerosnInfoToServer(person))
                     {
                         //跳到HomePageView
                         MessageBox.Show("登录成功");
