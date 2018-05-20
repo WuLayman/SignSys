@@ -13,10 +13,7 @@ namespace Client
     {
         IRegionManager _regionManager;
         IUnityContainer _container;
-
-
         private bool _isBusy;
-
         public bool IsBusy { get => _isBusy; set => _isBusy = value; }
 
         public void ClientDisconnection()
