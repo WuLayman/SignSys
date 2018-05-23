@@ -163,7 +163,7 @@ namespace MainProj
         {
             try
             {
-                if (b2 == true && b3 == true)
+                if (b2 == true && b3 == false)
                 {
                     MessageBox.Show("服务正在运行中...");
                     return;
@@ -232,9 +232,16 @@ namespace MainProj
         private void ShowUsersOnline()
         {
             dataGridView1.DataSource = PersonIPEndPointCollection.GetUsersMsg(people);
-            dataGridView1.Columns["UserRealName"].HeaderCell.Value = "用户姓名";
-            dataGridView1.Columns["UserIP"].HeaderCell.Value = "IP地址";
-            dataGridView1.Columns["UserPoint"].HeaderCell.Value = "端口号";
+            try
+            {
+                dataGridView1.Columns["UserRealName"].HeaderCell.Value = "用户姓名";
+                dataGridView1.Columns["UserIP"].HeaderCell.Value = "IP地址";
+                dataGridView1.Columns["UserPoint"].HeaderCell.Value = "端口号";
+            }
+            catch
+            {
+                dataGridView1.DataSource = null;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
