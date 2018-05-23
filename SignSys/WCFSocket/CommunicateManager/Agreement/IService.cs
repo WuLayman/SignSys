@@ -15,11 +15,6 @@ namespace WCFSocket.CommunicateManager.Agreement
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ICallBackServices))]
     public interface IService
     {
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="UID"></param>
-        [OperationContract(IsOneWay = true)]
         void Login(PersonInfo personInfo);
         /// <summary>
         /// 心跳检测

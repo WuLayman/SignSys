@@ -55,15 +55,15 @@ namespace I_communication_component
                 IService proxy = channelFactory.CreateChannel();
                 using (proxy as IDisposable)
                 {
-                    proxy.Login(personInfo);
+                    //proxy.Login(personInfo);
                     while (true)
                     {
                         ct.ThrowIfCancellationRequested();
                         Thread.Sleep(3000);
                         try
                         {
-                            Setreconnection();
                             proxy.Update(personInfo);
+                            Setreconnection();                            
                         }
                         catch
                         {
