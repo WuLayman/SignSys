@@ -196,14 +196,14 @@ namespace WCFSocket.CommunicateManager.Agreement
         public bool SendPasswordToServer(PersonInfo personInfo)
         {
             bool tip = false;
-            try
-            {
+            //try
+            //{
                 tip = sendDataToDB.SendChangePersonInfoToDB(personInfo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
             return tip;
         }
     }

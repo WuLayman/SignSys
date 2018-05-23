@@ -25,16 +25,16 @@ namespace WCFSocket.CommunicateManager
         public static bool SetConnectionToClient()
         {
             bool tip = false;
-            //try
-            //{
+            try
+            {
                 host = new ServiceHost(typeof(Service));
                 host.Open();
                 tip = true;
-            //}
-            //catch (Exception)
-            //{
+            }
+            catch (Exception)
+            {
 
-            //}
+            }
             return tip;
         }
         /// <summary>
