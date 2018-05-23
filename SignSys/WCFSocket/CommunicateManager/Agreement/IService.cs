@@ -15,7 +15,6 @@ namespace WCFSocket.CommunicateManager.Agreement
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(ICallBackServices))]
     public interface IService
     {
-        void Login(PersonInfo personInfo);
         /// <summary>
         /// 心跳检测
         /// </summary>
