@@ -249,5 +249,20 @@ namespace MainProj
                 UserChanged();
             }
         }
+
+        bool b3 = false;
+        private void 关闭服务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ServerOperation.CloseConnectionToClient())
+            {
+                RefreshTxtMsg("成功关闭服务!");
+                b3 = true;
+                dataGridView1.DataSource = null;
+            }
+            else
+            {
+                RefreshTxtMsg("关闭服务失败!" + ServerOperation.ErrorMsg);
+            }
+        }
     }
 }

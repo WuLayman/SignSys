@@ -15,16 +15,24 @@ namespace MainProj
             List<PersonIPEndPoint> personIPEndPoints = new List<PersonIPEndPoint>();
             var dbContext = EntityHelper.GetEntities();
 
-            foreach (var item in people)
+            try
             {
-                PersonIPEndPoint personIPEndPoint = new PersonIPEndPoint();
-                var person = dbContext.USERINFO.Where(x => x.NICKNAME == item.PersonInfo.UserNickName).ToList().First();
-                personIPEndPoint.UserRealName = person.REALNAME;
-                personIPEndPoint.UserIP = item.IP;
-                personIPEndPoint.UserPoint = item.Port;
-                personIPEndPoints.Add(personIPEndPoint);
+                foreach (var item in people)
+                {
+                    PersonIPEndPoint personIPEndPoint = new PersonIPEndPoint();
+                    var person = dbContext.USERINFO.Where(x => x.NICKNAME == item.PersonInfo.UserNickName).ToList().First();
+                    personIPEndPoint.UserRealName = person.REALNAME;
+                    personIPEndPoint.UserIP = item.IP;
+                    personIPEndPoint.UserPoint = item.Port;
+                    personIPEndPoints.Add(personIPEndPoint);
+                }
+                return personIPEndPoints;
             }
-            return personIPEndPoints;
+            catch
+            {
+                return null;
+            }
+
         }
     }
 }

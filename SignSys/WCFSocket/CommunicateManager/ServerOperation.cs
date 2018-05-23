@@ -38,6 +38,20 @@ namespace WCFSocket.CommunicateManager
             }
             return tip;
         }
+
+        public static bool CloseConnectionToClient()
+        {
+            try
+            {
+                host.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMsg = ex.Message;
+                return false;
+            }
+        }
         /// <summary>
         /// 客户端接收服务端已建立连接的远程终结点
         /// 用于客户端监视窗体显示

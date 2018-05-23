@@ -48,6 +48,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.关闭服务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -148,7 +149,8 @@
             // 
             this.tSMITools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSMIStartListen,
-            this.tSMIDBConfig});
+            this.tSMIDBConfig,
+            this.关闭服务ToolStripMenuItem});
             this.tSMITools.Name = "tSMITools";
             this.tSMITools.Size = new System.Drawing.Size(44, 21);
             this.tSMITools.Text = "工具";
@@ -230,6 +232,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "状态栏";
             // 
+            // 关闭服务ToolStripMenuItem
+            // 
+            this.关闭服务ToolStripMenuItem.Name = "关闭服务ToolStripMenuItem";
+            this.关闭服务ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关闭服务ToolStripMenuItem.Text = "关闭服务";
+            this.关闭服务ToolStripMenuItem.Click += new System.EventHandler(this.关闭服务ToolStripMenuItem_Click);
+            // 
             // SeviceFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -274,6 +283,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem 关闭服务ToolStripMenuItem;
     }
 }
 
