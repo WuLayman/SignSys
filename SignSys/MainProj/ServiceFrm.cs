@@ -237,6 +237,11 @@ namespace MainProj
                 dataGridView1.Columns["UserRealName"].HeaderCell.Value = "用户姓名";
                 dataGridView1.Columns["UserIP"].HeaderCell.Value = "IP地址";
                 dataGridView1.Columns["UserPoint"].HeaderCell.Value = "端口号";
+                dataGridView1.Columns[0].ReadOnly = true;
+                dataGridView1.Columns[1].ReadOnly = true;
+                dataGridView1.Columns[2].ReadOnly = true;
+                this.dataGridView1.ClearSelection();
+                this.dataGridView1.TabStop = false;
             }
             catch
             {
@@ -248,14 +253,7 @@ namespace MainProj
         {
             people = ServerOperation.ReceiveClientInfo();
             var nums = people.Count;
-            if (Count == nums)
-            {
-
-            }
-            else
-            {
-                UserChanged();
-            }
+            UserChanged();
         }
 
         private bool b3 = false;
