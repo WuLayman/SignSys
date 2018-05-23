@@ -27,10 +27,13 @@ namespace WCFSocket.CommunicateManager.Agreement
             bool tip = false;
             try
             {
-                Login(personInfo);
-                ServerOperation.people[client].PersonInfo = personInfo;
-                person = personInfo;
                 tip = getData.SendPerosnInfoToServer(personInfo);
+                if (tip)
+                {
+                    Login(personInfo);
+                    ServerOperation.people[client].PersonInfo = personInfo;
+                    person = personInfo;
+                }
             }
             catch (Exception)
             {
