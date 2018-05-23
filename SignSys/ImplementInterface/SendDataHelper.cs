@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ImplementInterface
-
 {
     public class SendDataHelper : ISendDataToDB
-    {  
+    {
         public bool SendChangePersonInfoToDB(PersonInfo personInfo)
         {
             try
@@ -25,9 +24,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -74,9 +73,9 @@ namespace ImplementInterface
                         return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -106,9 +105,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -139,9 +138,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }

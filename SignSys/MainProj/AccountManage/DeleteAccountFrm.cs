@@ -37,12 +37,12 @@ namespace MainProj.AccountManage
                 }
                 else
                 {
-                    MessageBox.Show("注销失败！");
+                    MessageBox.Show(SendInfoToDB.ErrorMsg);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
         }
 

@@ -11,12 +11,11 @@ namespace SeverToDB
 {
     public class RecvDataFromDBHelper : IReceiveInfoFromDB
     {
-        Entities1 dbContext = EntityHelper.GetEntities();
-          
         public bool JudgeIfManagerExist(Manager manager)
         {
             try
             {
+                Entities1 dbContext = new Entities1();
                 var data = dbContext.MANAGERS.Where(x => x.MANAGERNAME == manager.ManagerNickName.ToUpper() && x.PASSWORD == manager.Password.ToUpper()).ToList();
                 if (data.Count != 0)
                 {
@@ -36,6 +35,7 @@ namespace SeverToDB
             try
             {
                 List<PersonSignInfo> signInfos = new List<PersonSignInfo>();
+                Entities1 dbContext = new Entities1();
                 var allDatas = dbContext.SIGNINFO.ToList();
                 foreach (var SignInfo in allDatas)
                 {
@@ -68,6 +68,7 @@ namespace SeverToDB
             try
             {
                 var dataLists = new List<LeaveMessage>();
+                Entities1 dbContext = new Entities1();
                 var data = dbContext.LEAVEWORDINFO.ToList();
                 foreach (var item in data)
                 {
@@ -94,6 +95,7 @@ namespace SeverToDB
             try
             {
                 var realNames = new List<string>();
+                Entities1 dbContext = new Entities1();
                 var users = dbContext.USERINFO.ToList();
                 foreach (var item in nickName)
                 {
@@ -113,6 +115,7 @@ namespace SeverToDB
             try
             {
                 List<PersonSignInfo> signInfos = new List<PersonSignInfo>();
+                Entities1 dbContext = new Entities1();
                 var datas = dbContext.SIGNINFO.ToList();
                 foreach (var item in datas)
                 {
@@ -149,6 +152,7 @@ namespace SeverToDB
             try
             {
                 List<PictureInfo> pictures = new List<PictureInfo>();
+                Entities1 dbContext = new Entities1();
                 var usersInfo = dbContext.USERINFO.Where(x => x.REALNAME == userRealName).ToList();
                 if (usersInfo.Count == 0)
                 {
@@ -185,6 +189,7 @@ namespace SeverToDB
             try
             {
                 List<PersonInfo> users = new List<PersonInfo>();
+                Entities1 dbContext = new Entities1();
                 var usersInfo = dbContext.USERINFO.ToList();
                 foreach (var user in usersInfo)
                 {

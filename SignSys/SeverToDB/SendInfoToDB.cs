@@ -8,28 +8,23 @@ using System.Windows.Forms;
 
 namespace SeverToDB
 {
-    public class SendInfoToDB 
+    public class SendInfoToDB
     {
         Entities1 dbContext = EntityHelper.GetEntities();
-
-        //删除对应用户的所有绑定信息
-        //尚未完成
+        public static string ErrorMsg = null;
+        
         public bool SendDeleteUserInfoToDB(PersonInfo person)
         {
             try
             {
                 if (dbContext.USERINFO.Where(x => x.NICKNAME == person.UserNickName && x.REALNAME == person.UserRealName).ToList().Count == 0)
+                {
+                    ErrorMsg = "要删除的用户不存在，请检查用户信息！";
                     return false;
+                }
                 var user = dbContext.USERINFO.Where(x => x.NICKNAME == person.UserNickName && x.REALNAME == person.UserRealName).ToList().First();
-                var count = dbContext.USERINFO.ToList().Count - 1;
                 dbContext.USERINFO.Attach(user);
                 dbContext.Entry<USERINFO>(user).State = System.Data.Entity.EntityState.Deleted;
-
-                for (int i = 1; i <= count; i++)
-                {
-                    dbContext.USERINFO.ToList()[i - 1].USERID = i;
-                }
-
                 var b = dbContext.SaveChanges();
                 if (b != 0)
                 {
@@ -42,7 +37,7 @@ namespace SeverToDB
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorMsg = ex.Message;
             }
             return false;
         }

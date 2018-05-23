@@ -20,21 +20,20 @@ namespace WCFSocket.CommunicateManager.Agreement
         ICallBackServices client = OperationContext.Current.GetCallbackChannel<ICallBackServices>();//回调接口
         private static readonly object InstObj = new object();//单一实例 
         private static PersonInfo person;
-        IGetData getData =new GetDataHelper();
-        ISendDataToDB sendDataToDB=new SendDataHelper();
-
-        public event Action ClientDisconnection;
-        public event Action ClientReconnection;
-
+        IGetData getData = new GetDataHelper();
+        ISendDataToDB sendDataToDB = new SendDataHelper();
         public bool SendPerosnInfoToServer(PersonInfo personInfo)
         {
             bool tip = false;
             try
             {
-                Login(personInfo);
-                ServerOperation.people[client].PersonInfo = personInfo;
-                person = personInfo;
                 tip = getData.SendPerosnInfoToServer(personInfo);
+                if (tip)
+                {
+                    Login(personInfo);
+                    ServerOperation.people[client].PersonInfo = personInfo;
+                    person = personInfo;
+                }
             }
             catch (Exception)
             {
@@ -51,7 +50,6 @@ namespace WCFSocket.CommunicateManager.Agreement
             }
             catch (Exception)
             {
-
                 throw;
             }
             return tip;

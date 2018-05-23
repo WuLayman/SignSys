@@ -56,7 +56,7 @@ namespace MainProj.AccountManage
                     }
                     else
                     {
-                        MessageBox.Show("注册失败！");
+                        MessageBox.Show(DataHelper.ErrorMsg);
                     }
                 }
                 else
@@ -64,9 +64,9 @@ namespace MainProj.AccountManage
                     return;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
         }
 
