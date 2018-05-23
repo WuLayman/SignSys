@@ -22,9 +22,6 @@ namespace WCFSocket.CommunicateManager.Agreement
         private static PersonInfo person;
         IGetData getData = new GetDataHelper();
         ISendDataToDB sendDataToDB = new SendDataHelper();
-
-        public event Action ClientDisconnection;
-        public event Action ClientReconnection;
         public bool SendPerosnInfoToServer(PersonInfo personInfo)
         {
             bool tip = false;
