@@ -50,7 +50,6 @@ namespace WCFSocket.CommunicateManager.Agreement
             }
             catch (Exception)
             {
-
                 throw;
             }
             return tip;

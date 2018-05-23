@@ -45,7 +45,13 @@
             this.tSMIDBConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.txtShowMsg = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -56,7 +62,7 @@
             this.tSMITools});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(586, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(587, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -72,14 +78,14 @@
             // tSMICreateAccount
             // 
             this.tSMICreateAccount.Name = "tSMICreateAccount";
-            this.tSMICreateAccount.Size = new System.Drawing.Size(180, 22);
+            this.tSMICreateAccount.Size = new System.Drawing.Size(124, 22);
             this.tSMICreateAccount.Text = "用户注册";
             this.tSMICreateAccount.Click += new System.EventHandler(this.tSMICreateAccount_Click);
             // 
             // tSMIDeleteAccount
             // 
             this.tSMIDeleteAccount.Name = "tSMIDeleteAccount";
-            this.tSMIDeleteAccount.Size = new System.Drawing.Size(180, 22);
+            this.tSMIDeleteAccount.Size = new System.Drawing.Size(124, 22);
             this.tSMIDeleteAccount.Text = "用户注销";
             this.tSMIDeleteAccount.Click += new System.EventHandler(this.tSMIDeleteAccount_Click);
             // 
@@ -97,7 +103,7 @@
             // tSMIViewTimeTable
             // 
             this.tSMIViewTimeTable.Name = "tSMIViewTimeTable";
-            this.tSMIViewTimeTable.Size = new System.Drawing.Size(180, 22);
+            this.tSMIViewTimeTable.Size = new System.Drawing.Size(148, 22);
             this.tSMIViewTimeTable.Text = "查看课表";
             this.tSMIViewTimeTable.Click += new System.EventHandler(this.tSMIViewTimeTable_Click);
             // 
@@ -107,7 +113,7 @@
             this.tSMIViewAllSignInfo,
             this.tSMITodaySignInfo});
             this.tSMIViewSignInfo.Name = "tSMIViewSignInfo";
-            this.tSMIViewSignInfo.Size = new System.Drawing.Size(180, 22);
+            this.tSMIViewSignInfo.Size = new System.Drawing.Size(148, 22);
             this.tSMIViewSignInfo.Text = "查看打卡信息";
             // 
             // tSMIViewAllSignInfo
@@ -127,14 +133,14 @@
             // tSMIViewUser
             // 
             this.tSMIViewUser.Name = "tSMIViewUser";
-            this.tSMIViewUser.Size = new System.Drawing.Size(180, 22);
+            this.tSMIViewUser.Size = new System.Drawing.Size(148, 22);
             this.tSMIViewUser.Text = "全部用户";
             this.tSMIViewUser.Click += new System.EventHandler(this.tSMIViewUser_Click);
             // 
             // tSMIViewMessage
             // 
             this.tSMIViewMessage.Name = "tSMIViewMessage";
-            this.tSMIViewMessage.Size = new System.Drawing.Size(180, 22);
+            this.tSMIViewMessage.Size = new System.Drawing.Size(148, 22);
             this.tSMIViewMessage.Text = "查看请假信息";
             this.tSMIViewMessage.Click += new System.EventHandler(this.tSMIViewMessage_Click);
             // 
@@ -150,48 +156,96 @@
             // tSMIStartListen
             // 
             this.tSMIStartListen.Name = "tSMIStartListen";
-            this.tSMIStartListen.Size = new System.Drawing.Size(180, 22);
+            this.tSMIStartListen.Size = new System.Drawing.Size(160, 22);
             this.tSMIStartListen.Text = "开启服务";
             this.tSMIStartListen.Click += new System.EventHandler(this.tSMIStartListen_Click);
             // 
             // tSMIDBConfig
             // 
             this.tSMIDBConfig.Name = "tSMIDBConfig";
-            this.tSMIDBConfig.Size = new System.Drawing.Size(180, 22);
+            this.tSMIDBConfig.Size = new System.Drawing.Size(160, 22);
             this.tSMIDBConfig.Text = "数据库连接配置";
             this.tSMIDBConfig.Click += new System.EventHandler(this.tSMIDBConfig_Click);
             // 
             // txtShowMsg
             // 
-            this.txtShowMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtShowMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtShowMsg.Location = new System.Drawing.Point(12, 213);
+            this.txtShowMsg.Location = new System.Drawing.Point(6, 20);
             this.txtShowMsg.Multiline = true;
             this.txtShowMsg.Name = "txtShowMsg";
             this.txtShowMsg.ReadOnly = true;
             this.txtShowMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtShowMsg.Size = new System.Drawing.Size(562, 113);
+            this.txtShowMsg.Size = new System.Drawing.Size(551, 116);
             this.txtShowMsg.TabIndex = 1;
+            this.txtShowMsg.WordWrap = false;
             // 
             // timer1
             // 
             this.timer1.Interval = 5000;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(553, 208);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 28);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(565, 234);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "在线用户列表";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.txtShowMsg);
+            this.groupBox2.Location = new System.Drawing.Point(12, 262);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(563, 142);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "状态栏";
+            // 
             // SeviceFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 338);
-            this.Controls.Add(this.txtShowMsg);
+            this.ClientSize = new System.Drawing.Size(587, 416);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "SeviceFrm";
             this.Text = "服务端";
             this.Load += new System.EventHandler(this.SeviceFrm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,6 +269,9 @@
         private System.Windows.Forms.ToolStripMenuItem tSMITodaySignInfo;
         private System.Windows.Forms.ToolStripMenuItem tSMIViewMessage;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

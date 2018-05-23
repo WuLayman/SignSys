@@ -174,11 +174,12 @@ namespace MainProj
                      {
                          RefreshTxtMsg("成功开启服务!");
                          b2 = true;
+                         UserChanged += ShowUsersOnline;
+                         CheckUsersOnline();
                      }
                      else
                      {
-                         RefreshTxtMsg("开启服务失败!");
-                         b2 = false;
+                         RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg);
                      }
                  });
                 th.IsBackground = true;
@@ -224,6 +225,37 @@ namespace MainProj
                 showLeaveMsgFrm.StartPosition = FormStartPosition.CenterParent;
                 showLeaveMsgFrm.ShowDialog();
             }
+        }
+
+        private event Action UserChanged;
+        static int Count = 0;
+        static Dictionary<string, int> users = null;
+        private void CheckUsersOnline()
+        {
+            Thread th = new Thread(() =>
+            {
+                while (true)
+                {
+                    var users = ServerOperation.ReceiveClientInfo();
+                    var nums = users.Count;
+                    if (Count == nums)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Count = nums;
+                        UserChanged();
+                    }
+                }
+            });
+            th.IsBackground = true;
+            th.Start();
+        }
+
+        private void ShowUsersOnline()
+        {
+            dataGridView1.DataSource = users;
         }
     }
 }
