@@ -72,7 +72,7 @@ namespace I_communication_component
                             {
                                 Console.WriteLine("正在重连");
                                 proxy = channelFactory.CreateChannel();
-                                proxy.Login(personInfo);
+                                //proxy.Login(personInfo);
                                 client = new ServiceClient(context);
                                 client.SendPerosnInfoToServer(personInfo);
                             }
