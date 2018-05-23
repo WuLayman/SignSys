@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace I_communication_component
 {
-    public class ClientOperation: IClientInterfaceProj, IReceiveInfoFromServer, ISendInfoToServer
+    public class ClientOperation : IClientInterfaceProj, IReceiveInfoFromServer, ISendInfoToServer
     {
         MyWcf.ServiceClient client = null;
         CallBack back = null;
@@ -21,28 +21,17 @@ namespace I_communication_component
         Task task = null;
         static CancellationTokenSource cts = new CancellationTokenSource();
         CancellationToken ct = cts.Token;
-        public ClientOperation()
-        {
-            bool n = false;
-            SetBreaken(n);
-            Setreconnection(n);
-        }
         public event Action ClientReconnection;
         public event Action ClientDisconnection;
         //断线提醒事件定义
         #region
-        private bool breaken;
         protected virtual void clientdisconnection()
         {
             ClientDisconnection?.Invoke(); /* 事件被触发 */
         }
-        public void SetBreaken(bool x)
+        public void SetBreaken()
         {
-            if (breaken != x && breaken == false)
-            {
-                clientdisconnection();
-            }
-            breaken = x;
+            clientdisconnection();
         }
         #endregion  
         //重连成功定义
@@ -52,13 +41,9 @@ namespace I_communication_component
         {
             ClientReconnection?.Invoke(); /* 事件被触发 */
         }
-        public void Setreconnection(bool x)
+        public void Setreconnection()
         {
-            if (reconnection != x && reconnection == false)
-            {
-                clientreconnection();
-            }
-            reconnection = x;
+            clientreconnection();
         }
         #endregion
         public void Run(CancellationToken ct)
@@ -67,7 +52,7 @@ namespace I_communication_component
             InstanceContext context = new InstanceContext(back);
             using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
             {
-                IService proxy = channelFactory.CreateChannel();               
+                IService proxy = channelFactory.CreateChannel();
                 using (proxy as IDisposable)
                 {
                     proxy.Login(personInfo);
@@ -77,14 +62,12 @@ namespace I_communication_component
                         Thread.Sleep(3000);
                         try
                         {
-                            SetBreaken(false);
-                            Setreconnection(true);
+                            Setreconnection();
                             proxy.Update(personInfo);
                         }
                         catch
                         {
-                            SetBreaken(true);
-                            Setreconnection(false);
+                            SetBreaken();
                             try
                             {
                                 Console.WriteLine("正在重连");
