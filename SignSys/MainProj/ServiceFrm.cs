@@ -163,7 +163,7 @@ namespace MainProj
         {
             try
             {
-                if (b2)
+                if (b2 == true && b3 == true)
                 {
                     MessageBox.Show("服务正在运行中...");
                     return;
@@ -172,6 +172,7 @@ namespace MainProj
                 {
                     RefreshTxtMsg("成功开启服务!");
                     b2 = true;
+                    b3 = false;
                     UserChanged += ShowUsersOnline;
                     timer1.Enabled = true;
                     timer1.Start();
@@ -250,7 +251,7 @@ namespace MainProj
             }
         }
 
-        bool b3 = false;
+        private bool b3 = false;
         private void 关闭服务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ServerOperation.CloseConnectionToClient())
