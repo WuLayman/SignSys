@@ -12,11 +12,12 @@ using WCFSocket.CommunicateManager.Agreement;
 using PublicBaseClassProj;
 
 namespace WCFSocket.CommunicateManager
-{  
+{
     public static class ServerOperation
     {
         public static ServiceHost host;
         public static Dictionary<ICallBackServices, Person> people = new Dictionary<ICallBackServices, Person>();
+        public static string ErrorMsg = null;
         /// <summary>
         /// 与服务端建立通信连接，
         /// 即启动监听程序
@@ -31,9 +32,9 @@ namespace WCFSocket.CommunicateManager
                 host.Open();
                 tip = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                ErrorMsg = ex.Message;
             }
             return tip;
         }
@@ -42,15 +43,15 @@ namespace WCFSocket.CommunicateManager
         /// 用于客户端监视窗体显示
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, int> ReceiveClientInfo()
+        public static List<Person> ReceiveClientInfo()
         {
-            Dictionary<string, int> keyValuePairs = new Dictionary<string, int>();
-            Dictionary<ICallBackServices, Person> people1 = people;
-            foreach (var p in people1)
+            List<Person> users = new List<Person>();
+            var data = people;
+            foreach (var p in data)
             {
-                keyValuePairs.Add(p.Value.IP, p.Value.Port);
+                users.Add(p.Value);
             }
-            return keyValuePairs;
+            return users;
         }
     }
     public class Person

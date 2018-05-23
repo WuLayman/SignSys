@@ -47,6 +47,7 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.cboDBType = new System.Windows.Forms.ComboBox();
             this.lblDBType = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpConfig.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.grpConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpConfig.Controls.Add(this.button1);
             this.grpConfig.Controls.Add(this.label2);
             this.grpConfig.Controls.Add(this.txtPassWord);
             this.grpConfig.Controls.Add(this.lblPassword);
@@ -267,6 +269,17 @@
             this.lblDBType.TabIndex = 0;
             this.lblDBType.Text = "数据库类型：";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(165, 280);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "断开当前连接";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DBConnectConfigFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -302,5 +315,6 @@
         private System.Windows.Forms.ComboBox cboDBType;
         private System.Windows.Forms.Label lblDBType;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

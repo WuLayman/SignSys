@@ -112,6 +112,8 @@
     </Compile>
     <Compile Include="ConfigConnectionString\EncryptionHelper.cs" />
     <Compile Include="ConfigConnectionString\UpdateConfigFile.cs" />
+    <Compile Include="PersonIPEndPointCollection.cs" />
+    <Compile Include="PersonIPEndPoint.cs" />
     <Compile Include="PictureManage\ShowPictureFrm.cs">
       <SubType>Form</SubType>
     </Compile>

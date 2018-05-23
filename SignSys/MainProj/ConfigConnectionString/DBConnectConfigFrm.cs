@@ -22,15 +22,56 @@ namespace MainProj.ConfigConnectionString
             Init();
         }
 
+        public static DBConnectConfigFrm _FormSingle;//创建一个静态字段
+
+        public static DBConnectConfigFrm FormSingle//静态字段属性
+        {
+            get { return DBConnectConfigFrm._FormSingle; }
+            set { DBConnectConfigFrm._FormSingle = value; }
+        }
+
+        public static DBConnectConfigFrm GetSingle()//创建对象的方法
+        {
+            if (FormSingle == null)//为空创建一个新对象
+            {
+                FormSingle = new DBConnectConfigFrm();
+            }
+            return FormSingle;//否则返回原对象
+        }
+
         public static bool isConnect;
 
         private void Init()
         {
             this.MaximizeBox = false;
+            this.button1.Enabled = false;
             cboDBType.Items.Add("Oracle数据库");
             cboDBType.SelectedIndex = 0;
             cboProtocalType.Items.Add("TCP");
             cboProtocalType.SelectedIndex = 0;
+            TestDBConnected();
+        }
+
+        Entities1 dbContext = EntityHelper.GetEntities();
+        private void TestDBConnected()
+        {
+            Thread th = new Thread(() =>
+            {
+                while(true)
+                {
+                    var state = dbContext.Database.Connection.State;
+                    if (state == ConnectionState.Closed)
+                    {
+                        isConnect = false;
+                    }
+                    if (state == ConnectionState.Open)
+                    {
+                        isConnect = true;
+                    }
+                }
+            });
+            th.IsBackground = true;
+            th.Start();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -49,31 +90,28 @@ namespace MainProj.ConfigConnectionString
             var entityConnStr = GetconnStr("Entity");
             if (entityConnStr == null)
             {
-                MessageBox.Show("连接字符串为空！");
                 return;
             }
 
-            Entities1 entities2 = EntityHelper.GetEntities();
-            if (entities2.Database.Connection.State == ConnectionState.Open || entities2.Database.Connection.State == ConnectionState.Connecting)
+            if (dbContext.Database.Connection.State == ConnectionState.Open || dbContext.Database.Connection.State == ConnectionState.Connecting)
             {
-                entities2.Database.Connection.Close();
+                dbContext.Database.Connection.Close();
             }
-            entities2.Database.Connection.ConnectionString = entityConnStr;
+            dbContext.Database.Connection.ConnectionString = entityConnStr;
             //Console.WriteLine(entities2.Database.Connection.ConnectionString);
 
             //数据库连接验证操作
-            var state = entities2.Database.Connection.State;
+            var state = dbContext.Database.Connection.State;
             try
             {
-                entities2.Database.Connection.Open();
+                dbContext.Database.Connection.Open();
                 //成功
-                if (entities2.Database.Connection.State == ConnectionState.Open)
+                if (dbContext.Database.Connection.State == ConnectionState.Open)
                 {
                     isConnect = true;
                     MessageBox.Show("连接成功！");
-                    this.btnConnect.Enabled = false;
-                    //btnConnect.Enabled = false;
-                    this.Close();
+                    btnConnect.Enabled = false;
+                    button1.Enabled = true;
                 }
                 else
                 {
@@ -154,6 +192,17 @@ namespace MainProj.ConfigConnectionString
                 MessageBox.Show(ex.Message);
             }
             return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var state = dbContext.Database.Connection.State;
+            if (state == ConnectionState.Open)
+            {
+                dbContext.Database.Connection.Close();
+                btnConnect.Enabled = true;
+                button1.Enabled = false;
+            }
         }
     }
 }
