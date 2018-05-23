@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ClientProj
 {
-    public class ShellViewModel : IShellViewModel
+    public class ShellViewModel : NotifyPropertyChangedBase, IShellViewModel
     {
-        IRegionManager _regionManager;
-        IUnityContainer _container;
+        //IRegionManager _regionManager;
+        //IUnityContainer _container;
 
 
-        private bool _isBusy;
+        private bool _isBusy = false;
 
         public ShellViewModel()
         {
@@ -27,16 +27,18 @@ namespace ClientProj
             InterfaceClass.ClientInterface.ClientReconnection += new Action(ClientReconnection);
         }
 
-        public bool IsBusy { get => _isBusy; set => _isBusy = value; }
+        public bool IsBusy { get => _isBusy; set { _isBusy = value; OnProperyChanged("IsBusy"); } }
 
         public void ClientDisconnection()
         {
-            IsBusy = false;
+            IsBusy = true;
+            Console.WriteLine("IsBusy被设为true");
         }
 
         public void ClientReconnection()
         {
-            IsBusy = true;
+            IsBusy = false;
+            Console.WriteLine("IsBusy被设为false");
         }
 
     }
