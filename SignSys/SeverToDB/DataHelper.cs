@@ -8,22 +8,25 @@ using System.Windows.Forms;
 
 namespace SeverToDB
 {
-    public class DataHelper 
+    public class DataHelper
     {
         private Entities1 entities = EntityHelper.GetEntities();
+        public static string ErrorMsg = null;
 
         public bool SendNewPersonInfoToDB(PersonInfo personInfo)
         {
             if (entities.USERINFO.Where(x => x.NICKNAME == personInfo.UserNickName).ToList().Count == 1)
+            {
+                ErrorMsg = "该用户名已存在，换一个吧~~~";
                 return false;
-            var count = entities.USERINFO.ToList().Count;
+            }
             USERINFO userInfo = new USERINFO()
             {
                 NICKNAME = personInfo.UserNickName,
                 REALNAME = personInfo.UserRealName,
                 PASSWORD = personInfo.PassWord,
                 MACADDRESS = personInfo.MacAddress,
-                USERID = count + 1
+                USERID = Guid.NewGuid().ToString()
             };
             entities.USERINFO.Add(userInfo);
 
@@ -35,9 +38,9 @@ namespace SeverToDB
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorMsg = ex.Message;
             }
 
             return false;

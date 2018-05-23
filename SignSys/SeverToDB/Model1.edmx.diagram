@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="797c59b0b94549f98b0dda7a33a0eae5" Name="Diagram1">
-        <EntityTypeShape EntityType="Model1.LEAVEWORDINFO" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.MANAGERS" Width="1.5" PointX="8.375" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.PICTUREINFO" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.SIGNINFO" Width="1.5" PointX="6.625" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.USERINFO" Width="1.5" PointX="1" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="Model1.FK_USER_LEAVEWORD_NICKNAME" ManuallyRouted="false" />
-        <AssociationConnector Association="Model1.FK_USERINFO_PICINFO_NICKNAME" ManuallyRouted="false" />
-        <AssociationConnector Association="Model1.FK_USERINFO_SIGNINFO_NICKNAME" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model1.LEAVEWORDINFO" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="Model1.MANAGERS" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model1.PICTUREINFO" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="Model1.SIGNINFO" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="Model1.USERINFO" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="Model1.FK_USER_LEAVEWORD_NICKNAME" />
+        <AssociationConnector Association="Model1.FK_USERINFO_PICINFO_NICKNAME" />
+        <AssociationConnector Association="Model1.FK_USERINFO_SIGNINFO_NICKNAME" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -44,10 +44,10 @@
           <Key>
             <PropertyRef Name="NICKNAME" />
           </Key>
-          <Property Name="USERID" Type="number" Precision="38" Scale="0" />
+          <Property Name="USERID" Type="varchar2" MaxLength="100" />
           <Property Name="NICKNAME" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="REALNAME" Type="varchar2" MaxLength="20" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="2000" Nullable="false" />
           <Property Name="MACADDRESS" Type="varchar2" MaxLength="50" />
         </EntityType>
         <Association Name="FK_USER_LEAVEWORD_NICKNAME">
@@ -115,62 +115,81 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LEAVEWORDINFO" EntityType="Model1.LEAVEWORDINFO" />
+          <EntitySet Name="MANAGERS" EntityType="Model1.MANAGERS" />
+          <EntitySet Name="PICTUREINFO" EntityType="Model1.PICTUREINFO" />
+          <EntitySet Name="SIGNINFO" EntityType="Model1.SIGNINFO" />
+          <EntitySet Name="USERINFO" EntityType="Model1.USERINFO" />
+          <AssociationSet Name="FK_USER_LEAVEWORD_NICKNAME" Association="Model1.FK_USER_LEAVEWORD_NICKNAME">
+            <End Role="USERINFO" EntitySet="USERINFO" />
+            <End Role="LEAVEWORDINFO" EntitySet="LEAVEWORDINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERINFO_PICINFO_NICKNAME" Association="Model1.FK_USERINFO_PICINFO_NICKNAME">
+            <End Role="USERINFO" EntitySet="USERINFO" />
+            <End Role="PICTUREINFO" EntitySet="PICTUREINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERINFO_SIGNINFO_NICKNAME" Association="Model1.FK_USERINFO_SIGNINFO_NICKNAME">
+            <End Role="USERINFO" EntitySet="USERINFO" />
+            <End Role="SIGNINFO" EntitySet="SIGNINFO" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="LEAVEWORDINFO">
           <Key>
             <PropertyRef Name="WORDID" />
           </Key>
-          <Property Name="WORDID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MESSAGE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LEAVESTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WORDID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MESSAGE" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LEAVESTATE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="LEAVETIME" Type="DateTime" />
           <Property Name="NICKNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="USERINFO" Relationship="Self.FK_USER_LEAVEWORD_NICKNAME" FromRole="LEAVEWORDINFO" ToRole="USERINFO" />
+          <NavigationProperty Name="USERINFO" Relationship="Model1.FK_USER_LEAVEWORD_NICKNAME" FromRole="LEAVEWORDINFO" ToRole="USERINFO" />
         </EntityType>
         <EntityType Name="MANAGERS">
           <Key>
             <PropertyRef Name="MANAGERNAME" />
           </Key>
-          <Property Name="MANAGERNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANAGERNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PICTUREINFO">
           <Key>
             <PropertyRef Name="PICTUREID" />
           </Key>
-          <Property Name="PICTUREID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PICTUREID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NICKNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="COURSE" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="EXPERIMENT" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="USERINFO" Relationship="Self.FK_USERINFO_PICINFO_NICKNAME" FromRole="PICTUREINFO" ToRole="USERINFO" />
+          <NavigationProperty Name="USERINFO" Relationship="Model1.FK_USERINFO_PICINFO_NICKNAME" FromRole="PICTUREINFO" ToRole="USERINFO" />
         </EntityType>
         <EntityType Name="SIGNINFO">
           <Key>
             <PropertyRef Name="SIGNINFOID" />
           </Key>
-          <Property Name="SIGNINFOID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SIGNINFOID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NICKNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ISSIGN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISSIGN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SIGNTIME" Type="DateTime" />
-          <NavigationProperty Name="USERINFO" Relationship="Self.FK_USERINFO_SIGNINFO_NICKNAME" FromRole="SIGNINFO" ToRole="USERINFO" />
+          <NavigationProperty Name="USERINFO" Relationship="Model1.FK_USERINFO_SIGNINFO_NICKNAME" FromRole="SIGNINFO" ToRole="USERINFO" />
         </EntityType>
         <EntityType Name="USERINFO">
           <Key>
             <PropertyRef Name="NICKNAME" />
           </Key>
-          <Property Name="USERID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="NICKNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REALNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USERID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NICKNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REALNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="MACADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="LEAVEWORDINFO" Relationship="Self.FK_USER_LEAVEWORD_NICKNAME" FromRole="USERINFO" ToRole="LEAVEWORDINFO" />
-          <NavigationProperty Name="PICTUREINFO" Relationship="Self.FK_USERINFO_PICINFO_NICKNAME" FromRole="USERINFO" ToRole="PICTUREINFO" />
-          <NavigationProperty Name="SIGNINFO" Relationship="Self.FK_USERINFO_SIGNINFO_NICKNAME" FromRole="USERINFO" ToRole="SIGNINFO" />
+          <NavigationProperty Name="LEAVEWORDINFO" Relationship="Model1.FK_USER_LEAVEWORD_NICKNAME" FromRole="USERINFO" ToRole="LEAVEWORDINFO" />
+          <NavigationProperty Name="PICTUREINFO" Relationship="Model1.FK_USERINFO_PICINFO_NICKNAME" FromRole="USERINFO" ToRole="PICTUREINFO" />
+          <NavigationProperty Name="SIGNINFO" Relationship="Model1.FK_USERINFO_SIGNINFO_NICKNAME" FromRole="USERINFO" ToRole="SIGNINFO" />
         </EntityType>
         <Association Name="FK_USER_LEAVEWORD_NICKNAME">
-          <End Role="USERINFO" Type="Self.USERINFO" Multiplicity="0..1">
+          <End Type="Model1.USERINFO" Role="USERINFO" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="LEAVEWORDINFO" Type="Self.LEAVEWORDINFO" Multiplicity="*" />
+          <End Type="Model1.LEAVEWORDINFO" Role="LEAVEWORDINFO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USERINFO">
               <PropertyRef Name="NICKNAME" />
@@ -181,10 +200,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USERINFO_PICINFO_NICKNAME">
-          <End Role="USERINFO" Type="Self.USERINFO" Multiplicity="0..1">
+          <End Type="Model1.USERINFO" Role="USERINFO" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PICTUREINFO" Type="Self.PICTUREINFO" Multiplicity="*" />
+          <End Type="Model1.PICTUREINFO" Role="PICTUREINFO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USERINFO">
               <PropertyRef Name="NICKNAME" />
@@ -195,10 +214,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USERINFO_SIGNINFO_NICKNAME">
-          <End Role="USERINFO" Type="Self.USERINFO" Multiplicity="0..1">
+          <End Type="Model1.USERINFO" Role="USERINFO" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="SIGNINFO" Type="Self.SIGNINFO" Multiplicity="*" />
+          <End Type="Model1.SIGNINFO" Role="SIGNINFO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USERINFO">
               <PropertyRef Name="NICKNAME" />
@@ -208,26 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="LEAVEWORDINFO" EntityType="Self.LEAVEWORDINFO" />
-          <EntitySet Name="MANAGERS" EntityType="Self.MANAGERS" />
-          <EntitySet Name="PICTUREINFO" EntityType="Self.PICTUREINFO" />
-          <EntitySet Name="SIGNINFO" EntityType="Self.SIGNINFO" />
-          <EntitySet Name="USERINFO" EntityType="Self.USERINFO" />
-          <AssociationSet Name="FK_USER_LEAVEWORD_NICKNAME" Association="Self.FK_USER_LEAVEWORD_NICKNAME">
-            <End Role="USERINFO" EntitySet="USERINFO" />
-            <End Role="LEAVEWORDINFO" EntitySet="LEAVEWORDINFO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USERINFO_PICINFO_NICKNAME" Association="Self.FK_USERINFO_PICINFO_NICKNAME">
-            <End Role="USERINFO" EntitySet="USERINFO" />
-            <End Role="PICTUREINFO" EntitySet="PICTUREINFO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USERINFO_SIGNINFO_NICKNAME" Association="Self.FK_USERINFO_SIGNINFO_NICKNAME">
-            <End Role="USERINFO" EntitySet="USERINFO" />
-            <End Role="SIGNINFO" EntitySet="SIGNINFO" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -236,50 +236,50 @@
           <EntitySetMapping Name="LEAVEWORDINFO">
             <EntityTypeMapping TypeName="Model1.LEAVEWORDINFO">
               <MappingFragment StoreEntitySet="LEAVEWORDINFO">
-                <ScalarProperty Name="WORDID" ColumnName="WORDID" />
-                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
-                <ScalarProperty Name="LEAVESTATE" ColumnName="LEAVESTATE" />
-                <ScalarProperty Name="LEAVETIME" ColumnName="LEAVETIME" />
                 <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="LEAVETIME" ColumnName="LEAVETIME" />
+                <ScalarProperty Name="LEAVESTATE" ColumnName="LEAVESTATE" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="WORDID" ColumnName="WORDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MANAGERS">
             <EntityTypeMapping TypeName="Model1.MANAGERS">
               <MappingFragment StoreEntitySet="MANAGERS">
-                <ScalarProperty Name="MANAGERNAME" ColumnName="MANAGERNAME" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="MANAGERNAME" ColumnName="MANAGERNAME" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PICTUREINFO">
             <EntityTypeMapping TypeName="Model1.PICTUREINFO">
               <MappingFragment StoreEntitySet="PICTUREINFO">
-                <ScalarProperty Name="PICTUREID" ColumnName="PICTUREID" />
-                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
-                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
                 <ScalarProperty Name="EXPERIMENT" ColumnName="EXPERIMENT" />
+                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="PICTUREID" ColumnName="PICTUREID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SIGNINFO">
             <EntityTypeMapping TypeName="Model1.SIGNINFO">
               <MappingFragment StoreEntitySet="SIGNINFO">
-                <ScalarProperty Name="SIGNINFOID" ColumnName="SIGNINFOID" />
-                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
-                <ScalarProperty Name="ISSIGN" ColumnName="ISSIGN" />
                 <ScalarProperty Name="SIGNTIME" ColumnName="SIGNTIME" />
+                <ScalarProperty Name="ISSIGN" ColumnName="ISSIGN" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="SIGNINFOID" ColumnName="SIGNINFOID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USERINFO">
             <EntityTypeMapping TypeName="Model1.USERINFO">
               <MappingFragment StoreEntitySet="USERINFO">
-                <ScalarProperty Name="USERID" ColumnName="USERID" />
-                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
-                <ScalarProperty Name="REALNAME" ColumnName="REALNAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="MACADDRESS" ColumnName="MACADDRESS" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="REALNAME" ColumnName="REALNAME" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

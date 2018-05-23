@@ -22,7 +22,7 @@ namespace SeverToDB
             this.SIGNINFO = new HashSet<SIGNINFO>();
         }
     
-        public Nullable<decimal> USERID { get; set; }
+        public string USERID { get; set; }
         public string NICKNAME { get; set; }
         public string REALNAME { get; set; }
         public string PASSWORD { get; set; }

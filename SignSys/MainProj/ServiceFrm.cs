@@ -158,19 +158,27 @@ namespace MainProj
             this.BeginInvoke(new Action(() => { txtShowMsg.Text += msg + DateTime.Now.ToString() + "\r\n"; }));
         }
 
+        bool b2 = false;
         private void tSMIStartListen_Click(object sender, EventArgs e)
         {
             try
             {
                 Thread th = new Thread(() =>
                  {
+                     if (b2)
+                     {
+                         MessageBox.Show("服务正在运行中...");
+                         return;
+                     }
                      if (ServerOperation.SetConnectionToClient())
                      {
                          RefreshTxtMsg("成功开启服务!");
+                         b2 = true;
                      }
                      else
                      {
                          RefreshTxtMsg("开启服务失败!");
+                         b2 = false;
                      }
                  });
                 th.IsBackground = true;
@@ -211,7 +219,7 @@ namespace MainProj
                 return;
             }
             if (SecurityCheck())
-            { 
+            {
                 ShowLeaveMsgFrm showLeaveMsgFrm = new ShowLeaveMsgFrm();
                 showLeaveMsgFrm.StartPosition = FormStartPosition.CenterParent;
                 showLeaveMsgFrm.ShowDialog();

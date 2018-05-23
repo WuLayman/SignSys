@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.grpConfig = new System.Windows.Forms.GroupBox();
-            this.btnCloseConnect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassWord = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.grpConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpConfig.Controls.Add(this.btnCloseConnect);
             this.grpConfig.Controls.Add(this.label2);
             this.grpConfig.Controls.Add(this.txtPassWord);
             this.grpConfig.Controls.Add(this.lblPassword);
@@ -80,17 +78,6 @@
             this.grpConfig.Size = new System.Drawing.Size(452, 318);
             this.grpConfig.TabIndex = 1;
             this.grpConfig.TabStop = false;
-            // 
-            // btnCloseConnect
-            // 
-            this.btnCloseConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseConnect.Location = new System.Drawing.Point(198, 280);
-            this.btnCloseConnect.Name = "btnCloseConnect";
-            this.btnCloseConnect.Size = new System.Drawing.Size(75, 23);
-            this.btnCloseConnect.TabIndex = 19;
-            this.btnCloseConnect.Text = "断开连接";
-            this.btnCloseConnect.UseVisualStyleBackColor = true;
-            this.btnCloseConnect.Click += new System.EventHandler(this.btnCloseConnect_Click);
             // 
             // label2
             // 
@@ -315,6 +302,5 @@
         private System.Windows.Forms.ComboBox cboDBType;
         private System.Windows.Forms.Label lblDBType;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnCloseConnect;
     }
 }

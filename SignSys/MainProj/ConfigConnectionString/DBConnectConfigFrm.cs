@@ -31,7 +31,6 @@ namespace MainProj.ConfigConnectionString
             cboDBType.SelectedIndex = 0;
             cboProtocalType.Items.Add("TCP");
             cboProtocalType.SelectedIndex = 0;
-            this.btnCloseConnect.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -55,8 +54,12 @@ namespace MainProj.ConfigConnectionString
             }
 
             Entities1 entities2 = EntityHelper.GetEntities();
+            if (entities2.Database.Connection.State == ConnectionState.Open || entities2.Database.Connection.State == ConnectionState.Connecting)
+            {
+                entities2.Database.Connection.Close();
+            }
             entities2.Database.Connection.ConnectionString = entityConnStr;
-            Console.WriteLine(entities2.Database.Connection.ConnectionString);
+            //Console.WriteLine(entities2.Database.Connection.ConnectionString);
 
             //数据库连接验证操作
             var state = entities2.Database.Connection.State;
@@ -68,7 +71,6 @@ namespace MainProj.ConfigConnectionString
                 {
                     isConnect = true;
                     MessageBox.Show("连接成功！");
-                    this.btnCloseConnect.Enabled = true;
                     this.btnConnect.Enabled = false;
                     //btnConnect.Enabled = false;
                     this.Close();
@@ -152,16 +154,6 @@ namespace MainProj.ConfigConnectionString
                 MessageBox.Show(ex.Message);
             }
             return true;
-        }
-
-        private void btnCloseConnect_Click(object sender, EventArgs e)
-        {
-            Entities1 entities2 = EntityHelper.GetEntities();
-            entities2.Database.Connection.Close();
-            var state = entities2.Database.Connection.State;
-            this.btnCloseConnect.Enabled = false;
-            this.btnConnect.Enabled = true;
-            isConnect = false;
         }
     }
 }

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ImplementInterface
-
 {
     public class SendDataHelper : ISendDataToDB
     {
@@ -17,7 +16,7 @@ namespace ImplementInterface
         {
             try
             {
-                Entities1 dbContext = EntityHelper.GetEntities();
+                Entities1 dbContext = new Entities1();
                 var userInfo = dbContext.USERINFO.Where(x => x.NICKNAME == personInfo.UserNickName).ToList().First();
                 userInfo.PASSWORD = personInfo.PassWord;
                 userInfo.MACADDRESS = personInfo.MacAddress;
@@ -25,9 +24,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -74,9 +73,9 @@ namespace ImplementInterface
                         return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -106,9 +105,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
@@ -139,9 +138,9 @@ namespace ImplementInterface
                 if (num == 1)
                     return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
             return false;
         }
