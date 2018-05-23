@@ -187,7 +187,7 @@ namespace I_communication_component
         /// <returns>返回值为String类型的Mac地址</returns>
         public string ReceiveMacAddress(string userName)
         {
-            return client.ReceiveMacAddressAsync(userName).Result;
+            return client.ReceiveMacAddress(userName);
         }
         /// <summary>
         /// 从服务端接收（课表信息）
@@ -195,7 +195,7 @@ namespace I_communication_component
         /// <returns>返回课表信息类</returns>
         public PictureInfo ReceivePictureFromServer(string useName, TimetableAndExpPic ttAndEP)
         {
-            return client.ReceivePictureFromServerAsync(useName, ttAndEP).Result;
+            return client.ReceivePictureFromServer(useName, ttAndEP);
         }
         /// <summary>
         /// 从服务端接收今日是否已签到
