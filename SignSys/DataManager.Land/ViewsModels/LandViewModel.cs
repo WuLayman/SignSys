@@ -91,8 +91,6 @@ namespace DataManager.Land.ViewsModels
                 StaticProperty.staticUserName = UserName;
                 _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
 
-
-
                 string macAddress = InterfaceClass.ClientInterface.ReceiveMacAddress(UserName);
 
                 if (macAddress == null)
@@ -117,24 +115,7 @@ namespace DataManager.Land.ViewsModels
                 }
                 else
                 {
-                    byte[] passwordBytes = Encoding.UTF8.GetBytes(pwb.Password);
-                    byte[] macBytes = Encoding.UTF8.GetBytes(GetMacAddress());
-                    if (passwordBytes.Length > macBytes.Length)
-                    {
-                        for (int i = 0; i < passwordBytes.Length; i++)
-                        {
-                            passwordBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < macBytes.Length; i++)
-                        {
-                            passwordBytes[i] = (byte)(macBytes[i] ^ passwordBytes[i]);
-                        }
-                    }
-
-                    pwb.Password = passwordBytes.ToString();
+                    pwb.Password = BCutEncrypt(pwb.Password);
 
                     PersonInfo person = new PersonInfo
                     {
@@ -165,6 +146,8 @@ namespace DataManager.Land.ViewsModels
                 MessageBoxResult mor = MessageBox.Show("服务端连接失败，请重试");
                 if (mor == MessageBoxResult.OK)
                 {
+                    StaticProperty.staticUserName = null;
+                    _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
                     IsBusy = false;
                     pwb.Password = null;
                 }
@@ -227,6 +210,38 @@ namespace DataManager.Land.ViewsModels
 
 
         #region  Methods
+
+        public string BCutEncrypt(string str)
+        {
+            char[] emblem = GetMacAddress().ToCharArray();
+            StringBuilder buffer = new StringBuilder();
+            char[] chars = str.ToCharArray();
+            if (emblem.Length > chars.Length)
+            {
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    char temp = (char)(chars[i] ^ emblem[i]);
+                    buffer.Append(temp);
+                    for (int j = i; j < emblem.Length; j++)
+                    {
+                        buffer.Append(emblem[j]);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < emblem.Length; i++)
+                {
+                    char temp = (char)(chars[i] ^ emblem[i]);
+                    buffer.Append(temp);
+                    for (int j = i; j < chars.Length; j++)
+                    {
+                        buffer.Append(chars[j]);
+                    }
+                }
+            }
+            return buffer.ToString();
+        }
 
         #endregion
 

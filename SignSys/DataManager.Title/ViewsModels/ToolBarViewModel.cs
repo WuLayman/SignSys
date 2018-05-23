@@ -81,6 +81,7 @@ namespace DataManager.Title.ViewsModels
 
         private bool NotLand()
         {
+            //UserName = StaticProperty.staticUserName;
 
             if (UserName == null)
             {
@@ -106,6 +107,7 @@ namespace DataManager.Title.ViewsModels
             }
             else
             {
+
                 return true;
             }
 
@@ -185,17 +187,26 @@ namespace DataManager.Title.ViewsModels
             }
             else
             {
-                if (InterfaceClass.ClientInterface.ReceiveSignInfoFromServer())
+                try
                 {
-                    _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
+                    if (InterfaceClass.ClientInterface.ReceiveSignInfoFromServer())
+                    {
+                        _aggregator.GetEvent<TitleChangedEvent>().Publish("今日已成功签到");
+                        return false;
+                    }
+                    else
+                    {
+                        _aggregator.GetEvent<TitleChangedEvent>().Publish("今日还没签到，请先签到");
+
+                        return true;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("判断是否签到ex");
                     return false;
                 }
-                else
-                {
-                    _aggregator.GetEvent<TitleChangedEvent>().Publish("今日还没签到，请先签到");
 
-                    return true;
-                }
             }
 
         }
