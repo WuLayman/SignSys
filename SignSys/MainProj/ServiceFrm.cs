@@ -100,7 +100,7 @@ namespace MainProj
 
         private void tSMIDBConfig_Click(object sender, EventArgs e)
         {
-            DBConnectConfigFrm dBConnectConfigFrm = new DBConnectConfigFrm();
+            DBConnectConfigFrm dBConnectConfigFrm = DBConnectConfigFrm.GetSingle();
             dBConnectConfigFrm.StartPosition = FormStartPosition.CenterParent;
             dBConnectConfigFrm.ShowDialog();
         }
@@ -109,7 +109,7 @@ namespace MainProj
         {
             if (!CheckConnect())
             {
-                MessageBox.Show("请先配置数据库连接！");
+                MessageBox.Show("请先连接数据库！");
                 return;
             }
             if (SecurityCheck())
@@ -163,27 +163,24 @@ namespace MainProj
         {
             try
             {
-                Thread th = new Thread(() =>
-                 {
-                     if (b2)
-                     {
-                         MessageBox.Show("服务正在运行中...");
-                         return;
-                     }
-                     if (ServerOperation.SetConnectionToClient())
-                     {
-                         RefreshTxtMsg("成功开启服务!");
-                         b2 = true;
-                         UserChanged += ShowUsersOnline;
-                         CheckUsersOnline();
-                     }
-                     else
-                     {
-                         RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg);
-                     }
-                 });
-                th.IsBackground = true;
-                th.Start();
+                if (b2)
+                {
+                    MessageBox.Show("服务正在运行中...");
+                    return;
+                }
+                if (ServerOperation.SetConnectionToClient())
+                {
+                    RefreshTxtMsg("成功开启服务!");
+                    b2 = true;
+                    UserChanged += ShowUsersOnline;
+                    timer1.Enabled = true;
+                    timer1.Start();
+                }
+                else
+                {
+                    RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg);
+                }
+
             }
             catch (Exception ex)
             {
@@ -229,33 +226,28 @@ namespace MainProj
 
         private event Action UserChanged;
         static int Count = 0;
-        static Dictionary<string, int> users = null;
-        private void CheckUsersOnline()
-        {
-            Thread th = new Thread(() =>
-            {
-                while (true)
-                {
-                    var users = ServerOperation.ReceiveClientInfo();
-                    var nums = users.Count;
-                    if (Count == nums)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        Count = nums;
-                        UserChanged();
-                    }
-                }
-            });
-            th.IsBackground = true;
-            th.Start();
-        }
+        static List<Person> people = null;
 
         private void ShowUsersOnline()
         {
-            dataGridView1.DataSource = users;
+            dataGridView1.DataSource = PersonIPEndPointCollection.GetUsersMsg(people);
+            dataGridView1.Columns["UserRealName"].HeaderCell.Value = "用户姓名";
+            dataGridView1.Columns["UserIP"].HeaderCell.Value = "IP地址";
+            dataGridView1.Columns["UserPoint"].HeaderCell.Value = "端口号";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            people = ServerOperation.ReceiveClientInfo();
+            var nums = people.Count;
+            if (Count == nums)
+            {
+
+            }
+            else
+            {
+                UserChanged();
+            }
         }
     }
 }
