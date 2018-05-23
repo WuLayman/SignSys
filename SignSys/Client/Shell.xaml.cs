@@ -1,6 +1,8 @@
 ﻿using AllInterfaceProj.ClientInterface;
 using Client.Infrastructure;
 using MahApps.Metro.Controls;
+using Microsoft.Practices.Unity;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +24,16 @@ namespace ClientProj
     /// </summary>
     public partial class Shell : MetroWindow, IShell
     {
+        //IRegionManager _regionManager;
+        //IUnityContainer _container;
 
         public Shell()
         {
-            InitializeComponent();
+            //_regionManager = regionManager;
+            //_container = container;
             //ViewModel = viewModel;
+            InitializeComponent();
+
             ShellViewModel viewModel = new ShellViewModel();
             DataContext = viewModel;
 
