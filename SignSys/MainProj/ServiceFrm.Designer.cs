@@ -178,7 +178,7 @@
             this.txtShowMsg.Name = "txtShowMsg";
             this.txtShowMsg.ReadOnly = true;
             this.txtShowMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtShowMsg.Size = new System.Drawing.Size(589, 116);
+            this.txtShowMsg.Size = new System.Drawing.Size(591, 116);
             this.txtShowMsg.TabIndex = 1;
             this.txtShowMsg.WordWrap = false;
             // 
