@@ -24,8 +24,8 @@ namespace ClientProj
 
         public void Initialize()
         {
-            _container.RegisterType<IShellViewModel, ShellViewModel>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IShell, Shell>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IShellViewModel, ShellViewModel>();
+            _container.RegisterType<IShell, Shell>();
 
             _regionManager.RegisterViewWithRegion(RegionNames.ShellRegion, typeof(Shell));
 

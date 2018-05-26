@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:infrastructure="clr-namespace:Client.Infrastructure;assembly=Client.Infrastructure"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:prism="http://prismlibrary.com/"
@@ -47,21 +48,20 @@
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="1">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Account"  Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
-
                     <TextBox x:Name="UserName"  Margin="3"  Text="{Binding UserName}" VerticalAlignment="Center"/>
-
                 </DockPanel>
                 <DockPanel Grid.Row="2">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Key" 
                                          Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
-                    <PasswordBox Margin="3" 
-                             x:Name="PasswordBox" 
-                             VerticalAlignment="Center" PasswordChanged="PasswordBox_PasswordChanged" Loaded="PasswordBox_Loaded">
+                    <PasswordBox x:Name="PasswordBox" infrastructure:PasswordBingSolve.Password="{Binding Password,Mode=TwoWay}" Margin="3" VerticalAlignment="Center" Loaded="PasswordBox_Loaded">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="KeyDown">
                                 <!-- This action will invoke the selected command in the view model and pass the parameters of the event to it. -->
                                 <prism:InvokeCommandAction Command="{Binding EnterLoginCommand}" TriggerParameterPath="Key" />
                             </i:EventTrigger>
+                            <!--<i:EventTrigger EventName="Password">
+                                <prism:InvokeCommandAction Command="{Binding GetPasswordCommand}" TriggerParameterPath="PasswordBox"/>
+                            </i:EventTrigger>-->
                         </i:Interaction.Triggers>
                     </PasswordBox>
                 </DockPanel>
@@ -71,7 +71,6 @@
                         HorizontalAlignment="Center"
                         Style="{StaticResource MaterialDesignFlatButton}"
                         Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ElementName=PasswordBox}"
                         Content="系统登入"/>
                 </DockPanel>
             </Grid>

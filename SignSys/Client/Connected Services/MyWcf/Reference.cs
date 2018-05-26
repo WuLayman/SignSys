@@ -286,12 +286,6 @@ namespace Client.MyWcf {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MyWcf.IService", CallbackContract=typeof(Client.MyWcf.IServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Login")]
-        void Login(Client.MyWcf.PersonInfo personInfo);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Login")]
-        System.Threading.Tasks.Task LoginAsync(Client.MyWcf.PersonInfo personInfo);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/Update")]
         void Update(Client.MyWcf.PersonInfo personInfo);
         
@@ -398,14 +392,6 @@ namespace Client.MyWcf {
         
         public ServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
-        }
-        
-        public void Login(Client.MyWcf.PersonInfo personInfo) {
-            base.Channel.Login(personInfo);
-        }
-        
-        public System.Threading.Tasks.Task LoginAsync(Client.MyWcf.PersonInfo personInfo) {
-            return base.Channel.LoginAsync(personInfo);
         }
         
         public void Update(Client.MyWcf.PersonInfo personInfo) {

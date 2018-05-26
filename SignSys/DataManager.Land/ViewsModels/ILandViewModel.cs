@@ -10,8 +10,8 @@ namespace DataManager.Land.ViewsModels
 {
     public interface ILandViewModel
     {
-        ILandView View { get; set; }
+        //ILandView View { get; set; }
 
-        void OnPasswordChanged(object sender);
+        //void OnPasswordChanged(object sender);
     }
 }

@@ -17,6 +17,7 @@ namespace I_communication_component
     {
         MyWcf.ServiceClient client = null;
         CallBack back = null;
+        InstanceContext context = null;
         PersonInfo personInfo = null;
         Task task = null;
         static CancellationTokenSource cts = new CancellationTokenSource();
@@ -25,10 +26,7 @@ namespace I_communication_component
         public event Action ClientDisconnection;
         //断线提醒事件定义
         #region
-        protected virtual void clientdisconnection()
-        {
-            ClientDisconnection?.Invoke(); /* 事件被触发 */
-        }
+        protected virtual void clientdisconnection() => ClientDisconnection?.Invoke(); /* 事件被触发 */
         public void SetBreaken()
         {
             clientdisconnection();
@@ -36,11 +34,7 @@ namespace I_communication_component
         #endregion  
         //重连成功定义
         #region 
-        private bool reconnection;
-        protected virtual void clientreconnection()
-        {
-            ClientReconnection?.Invoke(); /* 事件被触发 */
-        }
+        protected virtual void clientreconnection() => ClientReconnection?.Invoke(); /* 事件被触发 */
         public void Setreconnection()
         {
             clientreconnection();
@@ -48,8 +42,6 @@ namespace I_communication_component
         #endregion
         public void Run(CancellationToken ct)
         {
-            back = new CallBack();
-            InstanceContext context = new InstanceContext(back);
             using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
             {
                 IService proxy = channelFactory.CreateChannel();
@@ -59,14 +51,14 @@ namespace I_communication_component
                     while (true)
                     {
                         ct.ThrowIfCancellationRequested();
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                         try
                         {
                             proxy.Update(personInfo);
-                            Setreconnection();                            
+                            Setreconnection();
                         }
                         catch
-                        {
+                        {                           
                             SetBreaken();
                             try
                             {
@@ -75,11 +67,13 @@ namespace I_communication_component
                                 //proxy.Login(personInfo);
                                 client = new ServiceClient(context);
                                 client.SendPerosnInfoToServer(personInfo);
+                                Setreconnection();                            
                             }
                             catch
                             {
                                 Console.WriteLine("重连异常");
                             }
+                            
                         }
                     }
                 }
@@ -91,7 +85,7 @@ namespace I_communication_component
         public void Star()
         {
             back = new CallBack();
-            InstanceContext context = new InstanceContext(back);
+            context = new InstanceContext(back);
             client = new ServiceClient(context);
             //client.Login(personInfo);
         }
@@ -117,11 +111,15 @@ namespace I_communication_component
             Star();
             back = new CallBack();
             InstanceContext context = new InstanceContext(back);
-            task = new Task(() => { Run(ct); }, ct);
-            task.Start();
             try
             {
                 bool b = client.SendPerosnInfoToServer(personInfo);
+                task = null;
+                task = new Task(() => { Run(ct); }, ct);
+                if (task.Status ==TaskStatus.Created)
+                {
+                    task.Start();
+                }                
                 return b;
             }
             catch
@@ -187,7 +185,7 @@ namespace I_communication_component
         /// <returns>返回值为String类型的Mac地址</returns>
         public string ReceiveMacAddress(string userName)
         {
-            return client.ReceiveMacAddressAsync(userName).Result;
+            return client.ReceiveMacAddress(userName);
         }
         /// <summary>
         /// 从服务端接收（课表信息）
@@ -195,7 +193,7 @@ namespace I_communication_component
         /// <returns>返回课表信息类</returns>
         public PictureInfo ReceivePictureFromServer(string useName, TimetableAndExpPic ttAndEP)
         {
-            return client.ReceivePictureFromServerAsync(useName, ttAndEP).Result;
+            return client.ReceivePictureFromServer(useName, ttAndEP);
         }
         /// <summary>
         /// 从服务端接收今日是否已签到
