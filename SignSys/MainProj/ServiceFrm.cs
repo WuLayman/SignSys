@@ -159,7 +159,6 @@ namespace MainProj
         }
 
         bool b2 = false;
-        int ClickNum = 0;
         private void tSMIStartListen_Click(object sender, EventArgs e)
         {
             try
@@ -169,37 +168,35 @@ namespace MainProj
                     MessageBox.Show("服务正在运行中...");
                     return;
                 }
-                if (ClickNum != 0)
+                if (ServerOperation.host == null || ServerOperation.host.State == System.ServiceModel.CommunicationState.Closed)
                 {
-                    return;
+                    Thread th = new Thread(() =>
+                    {
+                        bool isConn = ServerOperation.SetConnectionToClient();
+                        if (isConn)
+                        {
+                            this.BeginInvoke(new Action(() =>
+                            {
+                                RefreshTxtMsg("成功开启服务!");
+                                b2 = true;
+                                b3 = false;
+                                UserChanged += ShowUsersOnline;
+                                timer1.Enabled = true;
+                                timer1.Start();
+                            }));
+                        }
+                        else
+                        {
+                            this.BeginInvoke(new Action(() => { RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg); }));
+                        }
+                    });
+                    th.IsBackground = true;
+                    th.Start();
                 }
                 else
                 {
-                    ClickNum++;
+                    MessageBox.Show("正在启动服务请稍后...");
                 }
-
-                Thread th = new Thread(() =>
-                {
-                    bool isConn = ServerOperation.SetConnectionToClient();
-                    if (isConn)
-                    {
-                        this.BeginInvoke(new Action(() =>
-                        {
-                            RefreshTxtMsg("成功开启服务!");
-                            b2 = true;
-                            b3 = false;
-                            UserChanged += ShowUsersOnline;
-                            timer1.Enabled = true;
-                            timer1.Start();
-                        }));
-                    }
-                    else
-                    {
-                        this.BeginInvoke(new Action(() => { RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg); }));
-                    }
-                });
-                th.IsBackground = true;
-                th.Start();
             }
             catch (Exception ex)
             {
@@ -244,7 +241,6 @@ namespace MainProj
         }
 
         private event Action UserChanged;
-        static int Count = 0;
         static List<Person> people = null;
 
         private void ShowUsersOnline()
