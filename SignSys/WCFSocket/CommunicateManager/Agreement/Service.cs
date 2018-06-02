@@ -156,7 +156,7 @@ namespace WCFSocket.CommunicateManager.Agreement
         {
             foreach (var d in ServerOperation.people)
             {
-                if (d.Value.PersonInfo == personInfo)//删除此关闭的客户端信息
+                if (d.Value.PersonInfo.MacAddress == personInfo.MacAddress)//删除此关闭的客户端信息
                 {
                     ServerOperation.people.Remove(client);
                     break;
