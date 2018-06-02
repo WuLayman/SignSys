@@ -50,6 +50,7 @@ namespace DataManager.State.ViewModels
             if (b)
             {
                 MessageBox.Show("上传成功");
+                LeaveReson = null;
                 //返回首页
                 var uri = new Uri("HomePage", UriKind.Relative);
                 _regionManager.RequestNavigate(RegionNames.LandRegion, uri);

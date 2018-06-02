@@ -22,7 +22,8 @@ namespace ClientProj
     {
         protected override DependencyObject CreateShell()
         {
-            //Container.RegisterType<ShellViewModel>();
+            Container.RegisterType<IShellViewModel,ShellViewModel>();
+            Container.RegisterType<IShell, Shell>();
             return Container.Resolve<Shell>();
         }
 
