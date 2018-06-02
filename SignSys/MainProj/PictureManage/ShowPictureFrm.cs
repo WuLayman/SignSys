@@ -22,7 +22,6 @@ namespace MainProj.PictureManage
 
         private void Init()
         {
-            this.MaximizeBox = false;
             cboChooseType.Items.Add("课程表");
             cboChooseType.Items.Add("实验表");
             cboChooseType.SelectedIndex = 0;
