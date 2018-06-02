@@ -30,17 +30,16 @@
             </Grid>
         </DataTemplate>
     </mahapp:MetroWindow.IconTemplate>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.4*"/>
-            <RowDefinition Height="1.1*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static inf:RegionNames.TitleRegion}"/>
-        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ToolbarRegion}"/>
-        <toolkit:BusyIndicator Grid.Row="2" IsBusy="{Binding IsBusy, Mode=TwoWay}" BusyContent="Loading Service....">
-            <ContentControl   prism:RegionManager.RegionName="{x:Static inf:RegionNames.LandRegion}"/>
-        </toolkit:BusyIndicator>
-    </Grid>
+    <toolkit:BusyIndicator  IsBusy="{Binding IsBusy, Mode=TwoWay}" BusyContent="Loading Service....">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.4*"/>
+                <RowDefinition Height="1.1*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static inf:RegionNames.TitleRegion}"/>
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ToolbarRegion}"/>
+            <ContentControl Grid.Row="2"  prism:RegionManager.RegionName="{x:Static inf:RegionNames.LandRegion}"/>
+        </Grid>
+    </toolkit:BusyIndicator>
 </mahapp:MetroWindow>

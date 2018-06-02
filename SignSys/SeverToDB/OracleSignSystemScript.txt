@@ -1,0 +1,110 @@
+--表空间创建
+CREATE TABLESPACE Sign_Data
+Datafile 'D:\SignTablespaceForOracleDB\SignData.dbf' SIZE 100M
+autoextend ON NEXT 20M
+logging;
+--临时表空间创建
+CREATE TEMPORARY TABLESPACE Sign_Data_Temp
+TEMPFILE 'D:\SignTablespaceForOracleDB\SignTemp.dbf' SIZE 20M
+AUTOEXTEND ON NEXT 2M;
+--创建新用户连接
+CREATE USER ZWJ
+IDENTIFIED BY 0000
+DEFAULT TABLESPACE Sign_Data
+TEMPORARY TABLESPACE Sign_Data_Temp
+QUOTA 30M ON Sign_Data
+QUOTA 20M ON users
+ACCOUNT UNLOCK
+PASSWORD EXPIRE;
+
+--创建以GUID为主键,并加入主外键关联的数据表
+--删除表
+DROP TABLE SignInfo PURGE;
+DROP TABLE PictureInfo PURGE;
+DROP TABLE LeaveWordInfo PURGE;
+DROP TABLE Managers PURGE;
+DROP TABLE UserInfo PURGE;
+--用户表表创建
+CREATE TABLE UserInfo(
+UserID VARCHAR2(100) ,
+NickName VARCHAR2(20) NOT NULL,
+RealName VARCHAR2(20) NOT NULL,
+PassWord VARCHAR2(2000) NOT NULL,
+MacAddress VARCHAR2(50),
+CONSTRAINT pk_userInfo_id PRIMARY KEY(NickName)
+);
+--签到表创建
+CREATE TABLE SignInfo(
+signinfoid varchar2(100),
+NickName VARCHAR2(20) ,
+IsSign VARCHAR2(10) DEFAULT 'NO' NOT NULL,
+SignTime DATE ,
+CONSTRAINT pk_PSignInfo_ID PRIMARY KEY(SignInfoID),
+CONSTRAINT fk_userinfo_signinfo_nickname FOREIGN KEY(NickName) REFERENCES UserInfo(NickName) ON DELETE CASCADE
+);
+--图片表创建
+CREATE TABLE PictureInfo(
+PictureID VARCHAR2(100),
+NickName VARCHAR2(20) ,
+Course BLOB ,
+Experiment BLOB ,
+CONSTRAINT pk_PictureInfo_nickName PRIMARY KEY(PictureID),
+CONSTRAINT fk_userinfo_picinfo_nickname FOREIGN KEY(NickName) REFERENCES UserInfo(NickName) ON DELETE CASCADE
+);
+--请假信息表创建
+CREATE TABLE LeaveWordInfo(
+WordID VARCHAR2(100),
+Message VARCHAR2(1000) DEFAULT '无请假记录' NOT NULL,
+LeaveState VARCHAR2(10) NOT NULL,
+LeaveTime DATE,
+NickName VARCHAR2(20) ,
+CONSTRAINT pk_msg_id PRIMARY KEY(WordID),
+CONSTRAINT fk_user_LeaveWord_nickname FOREIGN KEY(NickName) REFERENCES UserInfo(NickName) ON DELETE CASCADE
+);
+--创建管理员信息表
+CREATE TABLE Managers(
+ManagerName VARCHAR2(20) ,
+Password VARCHAR2(20),
+CONSTRAINT pk_Managers_ManagerName PRIMARY KEY(ManagerName)
+);
+
+--添加测试数据
+INSERT INTO UserInfo(UserID,NickName,RealName,PASSWORD,MacAddress) VALUES(SYS_GUID(),'WGWDD','WGW','0000','68-07-15-E2-6E-AE');
+INSERT INTO UserInfo(UserID,NickName,RealName,PASSWORD,MacAddress) VALUES(SYS_GUID(),'Marry','YCL','0000','69-01-17-E2-6E-AE');
+INSERT INTO UserInfo(UserID,NickName,RealName,PASSWORD,MacAddress) VALUES(SYS_GUID(),'Team','ZWJ','0000','65-45-10-E2-6E-AE');
+INSERT INTO UserInfo(UserID,NickName,RealName,PASSWORD,MacAddress) VALUES(SYS_GUID(),'Piter','LXW','0000','67-76-12-E2-6E-AE');
+
+INSERT INTO MANAGERS(ManagerName,Password) VALUES('SCOTT','0000');
+INSERT INTO MANAGERS(ManagerName,Password) VALUES('ZWJ','0000');
+
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'Piter','YES',TO_DATE('2018/5/11 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'WGWDD','YES',TO_DATE('2018/5/07 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'Marry','YES',TO_DATE('2018/5/01 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'Team','YES',TO_DATE('2018/5/21 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'Piter','YES',TO_DATE('2018/5/13 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+INSERT INTO SignInfo(SignInfoID,NickName,IsSign,SignTime) VALUES(SYS_GUID(),'Marry','YES',TO_DATE('2018/5/13 0:44:36','yyyy-mm-dd hh24:mi:ss'));
+
+INSERT INTO LEAVEWORDINFO(WordID,Message,LeaveState,LeaveTime,NickName) VALUES(SYS_GUID(),'身体不舒服','请假',TO_DATE('2018/5/13 0:44:36','yyyy-mm-dd hh24:mi:ss'),'Team');
+INSERT INTO LEAVEWORDINFO(WordID,Message,LeaveState,LeaveTime,NickName) VALUES(SYS_GUID(),'家里有事','请假',TO_DATE('2018/5/12 0:44:36','yyyy-mm-dd hh24:mi:ss'),'Marry');
+INSERT INTO LEAVEWORDINFO(WordID,Message,LeaveState,LeaveTime,NickName) VALUES(SYS_GUID(),'老师开会','请假',TO_DATE('2018/5/09 0:44:36','yyyy-mm-dd hh24:mi:ss'),'Team');
+INSERT INTO LEAVEWORDINFO(WordID,Message,LeaveState,LeaveTime,NickName) VALUES(SYS_GUID(),'运动会参加比赛','请假',TO_DATE('2018/5/10 0:44:36','yyyy-mm-dd hh24:mi:ss'),'Piter');
+INSERT INTO LEAVEWORDINFO(WordID,Message,LeaveState,LeaveTime,NickName) VALUES(SYS_GUID(),'运动会参加比赛','请假',TO_DATE('2018/5/13 0:44:36','yyyy-mm-dd hh24:mi:ss'),'WGWDD');
+
+COMMIT;
+
+1、ServerOperation 添加错误信息标识
+2、服务端添加新功能：用户在线显示，尚未测试！
+
+
+
+
+
+
+
+
+
+
+
+
+
+

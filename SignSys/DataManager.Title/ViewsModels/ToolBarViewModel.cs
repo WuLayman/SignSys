@@ -81,8 +81,6 @@ namespace DataManager.Title.ViewsModels
 
         private bool NotLand()
         {
-            //UserName = StaticProperty.staticUserName;
-
             if (UserName == null)
             {
                 //Thread th = new Thread(() =>
@@ -114,11 +112,20 @@ namespace DataManager.Title.ViewsModels
         }
         private void Logout()
         {
-            //退出登录
-            UserName = null;
-            InterfaceClass.ClientInterface.Leave();
-            var uri = new Uri("Land", UriKind.Relative);
-            _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            try
+            {
+                //退出登录
+                UserName = null;
+                InterfaceClass.ClientInterface.Leave();
+                var uri = new Uri("Land", UriKind.Relative);
+                _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            }
+            catch
+            {
+                var uri = new Uri("Land", UriKind.Relative);
+                _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
+            }
+
         }
         private void HomePage()
         {
@@ -206,11 +213,8 @@ namespace DataManager.Title.ViewsModels
                     Console.WriteLine("判断是否签到ex");
                     return false;
                 }
-
             }
-
         }
-
         #endregion
     }
 }

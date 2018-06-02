@@ -22,7 +22,7 @@ namespace ClientProj
     {
         protected override DependencyObject CreateShell()
         {
-            Container.RegisterType<ShellViewModel>();
+            //Container.RegisterType<ShellViewModel>();
             return Container.Resolve<Shell>();
         }
 
@@ -40,7 +40,7 @@ namespace ClientProj
         {
             ModuleCatalog catalog = new ModuleCatalog();
 
-           // catalog.AddModule(typeof(ShellViewModule));
+            //catalog.AddModule(typeof(ShellViewModule));
             catalog.AddModule(typeof(TitleModule));
             catalog.AddModule(typeof(LandViewModule));
             catalog.AddModule(typeof(ModifyPasswordViewModule));

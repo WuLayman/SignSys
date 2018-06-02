@@ -57,7 +57,7 @@ namespace MainProj.ConfigConnectionString
         {
             Thread th = new Thread(() =>
             {
-                while(true)
+                while (true)
                 {
                     var state = dbContext.Database.Connection.State;
                     if (state == ConnectionState.Closed)

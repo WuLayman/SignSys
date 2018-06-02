@@ -17,9 +17,6 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/PublicBaseClassProj" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IService_Login_InputMessage">
-    <wsdl:part name="parameters" element="tns:Login" />
-  </wsdl:message>
   <wsdl:message name="IService_Update_InputMessage">
     <wsdl:part name="parameters" element="tns:Update" />
   </wsdl:message>
@@ -93,9 +90,6 @@
     <wsdl:part name="parameters" element="tns:ShowMessageResponse" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IService">
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Login">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/Login" message="tns:IService_Login_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Update">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Update" message="tns:IService_Update_InputMessage" />
     </wsdl:operation>
@@ -151,12 +145,6 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="Login">
-      <soap12:operation soapAction="http://tempuri.org/IService/Login" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
     <wsdl:operation name="Update">
       <soap12:operation soapAction="http://tempuri.org/IService/Update" style="document" />
       <wsdl:input>
@@ -271,9 +259,9 @@
   </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
-      <soap12:address location="net.tcp://192.168.20.1:6000/mywcf" />
+      <soap12:address location="net.tcp://192.168.20.2:6000/mywcf" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.20.1:6000/mywcf</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.20.2:6000/mywcf</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

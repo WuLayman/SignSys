@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="51bd933f-2c96-4118-a2f0-453aad152e22" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="71b8276b-f78d-42fb-a20c-c7667fb36f5c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://192.168.20.1:6000/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://192.168.20.2:6000/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="161b443a-df92-4a82-86d3-51d69dd1a79e" SourceId="1" SourceUrl="net.tcp://192.168.20.1:6000/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f60c8e77-1b1a-43cb-b236-abf2a1c5c77c" SourceId="1" SourceUrl="net.tcp://192.168.20.1:6000/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f5a51bae-9c77-4e8b-9fc5-1e35e654a0b2" SourceId="1" SourceUrl="net.tcp://192.168.20.1:6000/mex" />
-    <MetadataFile FileName="PublicBaseClassProj.xsd" MetadataType="Schema" ID="4b629568-20bd-49e2-a901-fa301bd34902" SourceId="1" SourceUrl="net.tcp://192.168.20.1:6000/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0583ab52-fb9d-488b-a8e5-528a9807d7d9" SourceId="1" SourceUrl="net.tcp://192.168.20.2:6000/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="20da0fc2-1f33-4eff-bd7e-66e804888692" SourceId="1" SourceUrl="net.tcp://192.168.20.2:6000/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3d04b5dc-4921-4e6b-a01c-091e9444672d" SourceId="1" SourceUrl="net.tcp://192.168.20.2:6000/mex" />
+    <MetadataFile FileName="PublicBaseClassProj.xsd" MetadataType="Schema" ID="c1d208fd-a779-4097-8543-126ee049f10b" SourceId="1" SourceUrl="net.tcp://192.168.20.2:6000/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

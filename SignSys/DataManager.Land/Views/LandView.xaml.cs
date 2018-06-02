@@ -33,10 +33,10 @@ namespace DataManager.Land.Views
             get { return (ILandViewModel)DataContext; }
             set { DataContext = value; }
         }
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            ViewModel.OnPasswordChanged(sender);
-        }
+        //private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        //{
+        //    ViewModel.OnPasswordChanged(sender);
+        //}
 
         private void PasswordBox_Loaded(object sender, RoutedEventArgs e)
         {

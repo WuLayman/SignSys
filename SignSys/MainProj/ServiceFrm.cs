@@ -168,20 +168,35 @@ namespace MainProj
                     MessageBox.Show("服务正在运行中...");
                     return;
                 }
-                if (ServerOperation.SetConnectionToClient())
+                if (ServerOperation.host == null || ServerOperation.host.State == System.ServiceModel.CommunicationState.Closed)
                 {
-                    RefreshTxtMsg("成功开启服务!");
-                    b2 = true;
-                    b3 = false;
-                    UserChanged += ShowUsersOnline;
-                    timer1.Enabled = true;
-                    timer1.Start();
+                    Thread th = new Thread(() =>
+                    {
+                        bool isConn = ServerOperation.SetConnectionToClient();
+                        if (isConn)
+                        {
+                            this.BeginInvoke(new Action(() =>
+                            {
+                                RefreshTxtMsg("成功开启服务!");
+                                b2 = true;
+                                b3 = false;
+                                UserChanged += ShowUsersOnline;
+                                timer1.Enabled = true;
+                                timer1.Start();
+                            }));
+                        }
+                        else
+                        {
+                            this.BeginInvoke(new Action(() => { RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg); }));
+                        }
+                    });
+                    th.IsBackground = true;
+                    th.Start();
                 }
                 else
                 {
-                    RefreshTxtMsg("开启服务失败!" + ServerOperation.ErrorMsg);
+                    MessageBox.Show("正在启动服务请稍后...");
                 }
-
             }
             catch (Exception ex)
             {
@@ -226,7 +241,6 @@ namespace MainProj
         }
 
         private event Action UserChanged;
-        static int Count = 0;
         static List<Person> people = null;
 
         private void ShowUsersOnline()
@@ -259,16 +273,38 @@ namespace MainProj
         private bool b3 = false;
         private void 关闭服务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ServerOperation.CloseConnectionToClient())
+            bool b4 = false;
+
+            if (ServerOperation.host == null)
             {
-                RefreshTxtMsg("成功关闭服务!");
-                b3 = true;
-                dataGridView1.DataSource = null;
+                return;
             }
-            else
+            if (ServerOperation.host.State == System.ServiceModel.CommunicationState.Closing)
             {
-                RefreshTxtMsg("关闭服务失败!" + ServerOperation.ErrorMsg);
+                MessageBox.Show("正在关闭中...请稍后");
+                return;
             }
+            if (ServerOperation.host.State == System.ServiceModel.CommunicationState.Closed)
+            {
+                MessageBox.Show("服务已关闭...");
+                return;
+            }
+            Thread th = new Thread(() =>
+            {
+                b4 = ServerOperation.CloseConnectionToClient();
+
+                if (b4)
+                {
+                    this.BeginInvoke(new Action(() => { RefreshTxtMsg("成功关闭服务!"); dataGridView1.DataSource = null; }));
+                    b3 = true;
+                }
+                else
+                {
+                    this.BeginInvoke(new Action(() => { RefreshTxtMsg("关闭服务失败!" + ServerOperation.ErrorMsg); }));
+                }
+            });
+            th.IsBackground = true;
+            th.Start();
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="UZ9escPqJFpmuDNN8L05M5PjNfQ=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="IDAeZmJpMj2UehfVHIE+D29LLj0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IService">
       <properties>
@@ -121,10 +121,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IService" contract="MyWcf.IService" bindingType="netTcpBinding" address="net.tcp://192.168.20.1:6000/mywcf" bindingConfiguration="NetTcpBinding_IService">
+    <endpoint name="NetTcpBinding_IService" contract="MyWcf.IService" bindingType="netTcpBinding" address="net.tcp://192.168.20.2:6000/mywcf" bindingConfiguration="NetTcpBinding_IService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.20.1:6000/mywcf</serializedValue>
+          <serializedValue>net.tcp://192.168.20.2:6000/mywcf</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
