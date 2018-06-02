@@ -24,6 +24,10 @@ namespace I_communication_component
         CancellationToken ct = cts.Token;
         public event Action ClientReconnection;
         public event Action ClientDisconnection;
+        ClientOperation()
+        {
+
+        }
         //断线提醒事件定义
         #region
         protected virtual void clientdisconnection() => ClientDisconnection?.Invoke(); /* 事件被触发 */
@@ -56,10 +60,12 @@ namespace I_communication_component
                     SetBreaken();
                     try
                     {
+                        client = null;
                         Console.WriteLine("正在重连");
                         Star();
                         client.SendPerosnInfoToServer(personInfo);
                         Setreconnection();
+                        client.Leave(personInfo);
                         Console.WriteLine("重连成功");
                     }
                     catch

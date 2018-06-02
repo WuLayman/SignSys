@@ -10,6 +10,5 @@ namespace Client.Infrastructure
     public static class InterfaceClass
     {
         public static ClientOperation ClientInterface = new ClientOperation();
-        
     }
 }
