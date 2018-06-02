@@ -150,7 +150,6 @@ namespace DataManager.Land.ViewsModels
                     StaticProperty.staticUserName = null;
                     _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
                     IsBusy = false;
-                    Password = null;
                 }
             }
         }

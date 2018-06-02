@@ -24,10 +24,7 @@ namespace I_communication_component
         CancellationToken ct = cts.Token;
         public event Action ClientReconnection;
         public event Action ClientDisconnection;
-        ClientOperation()
-        {
 
-        }
         //断线提醒事件定义
         #region
         protected virtual void clientdisconnection() => ClientDisconnection?.Invoke(); /* 事件被触发 */
