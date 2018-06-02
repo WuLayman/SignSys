@@ -15,6 +15,7 @@ using DataManager.Picture;
 using DataManager.State;
 using DataManager.HistorySign;
 using DataManager.ModifyProfile;
+using DataManager.ChangeBackgroundColor;
 
 namespace ClientProj
 {
@@ -22,7 +23,7 @@ namespace ClientProj
     {
         protected override DependencyObject CreateShell()
         {
-            Container.RegisterType<IShellViewModel,ShellViewModel>();
+            Container.RegisterType<IShellViewModel, ShellViewModel>();
             Container.RegisterType<IShell, Shell>();
             return Container.Resolve<Shell>();
         }
@@ -49,6 +50,7 @@ namespace ClientProj
             catalog.AddModule(typeof(PictureViewModule));
             catalog.AddModule(typeof(StateViewModule));
             catalog.AddModule(typeof(HistorySignViewModule));
+            catalog.AddModule(typeof(ChangedBackgroundColorViewModule));
             return catalog;
         }
     }

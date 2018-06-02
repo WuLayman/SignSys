@@ -28,7 +28,7 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="39*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="修改配置文件：第一个填IP，第二个填端口号（切记不能瞎填)" Foreground="Red" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" Text="修改配置文件(切记不能瞎填)" Foreground="Red" HorizontalAlignment="Center" FontWeight="Bold"/>
             <Grid Grid.Row="1" Margin="5" FocusManager.FocusedElement="{Binding ElementName=UserName}">
                 <Grid.Resources>
                     <ResourceDictionary>
@@ -48,14 +48,14 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="1">
-                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Paperclip"  Foreground="{Binding Path=BorderBrush}"/>
-
+                    <TextBlock DockPanel.Dock="Left" Text="IP:" VerticalAlignment="Center" Foreground="{Binding Path=BorderBrush}"/>
                     <TextBox x:Name="UserName"  Margin="3"  Text="{Binding Ip}" VerticalAlignment="Center"/>
 
                 </DockPanel>
                 <DockPanel Grid.Row="2">
-                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="CropPortrait" 
-                                         Foreground="{Binding  Path=BorderBrush}"/>
+                    <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
+                               Text="PORT:"
+                               Foreground="{Binding  Path=BorderBrush}"/>
                     <TextBox Margin="3" Text="{Binding Port}"
                              VerticalAlignment="Center"/>
                 </DockPanel>

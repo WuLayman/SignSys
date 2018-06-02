@@ -60,7 +60,7 @@
                             <Button Command="{Binding LogoutCommand}">
                                 <StackPanel>
                                     <materialDesign:PackIcon Kind="Logout" Margin="3"/>
-                                    <TextBlock Text="退出登录"/>
+                                    <TextBlock Text="返回登录页面"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -96,6 +96,11 @@
                     <Button DockPanel.Dock="Left" ToolTip="修改配置文件" Command="{Binding ModifyProfileCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Projector"/>
+                        </StackPanel>
+                    </Button>
+                    <Button DockPanel.Dock="Left" ToolTip="修改颜色" Command="{Binding ChangeBackgroundCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="BorderColor"/>
                         </StackPanel>
                     </Button>
                     <Button DockPanel.Dock="Right" ToolTip="签到" IsEnabled="{Binding IsEnabled, Mode=TwoWay}" Command="{Binding SignCommand}">

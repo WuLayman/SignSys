@@ -49,14 +49,17 @@
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="1">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Account"  Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
-                    <TextBox x:Name="UserName"  Margin="3"  Text="{Binding UserName}" VerticalAlignment="Center"/>
+                    <TextBox x:Name="UserName"
+                             Margin="3"
+                             Text="{Binding UserName}" VerticalAlignment="Center"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 </DockPanel>
                 <DockPanel Grid.Row="2">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Key" 
                                          Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
                     <PasswordBox x:Name="PasswordBox" 
                                  infrastructure:PasswordBingSolve.Password="{Binding Password,Mode=TwoWay}" 
-                                 Margin="3" VerticalAlignment="Center" Loaded="PasswordBox_Loaded" 
+                                 Margin="3" VerticalAlignment="Center" Loaded="PasswordBox_Loaded"
                                  >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="KeyDown">

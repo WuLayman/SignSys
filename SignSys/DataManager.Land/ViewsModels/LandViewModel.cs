@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +50,7 @@ namespace DataManager.Land.ViewsModels
         public DelegateCommand<object> EnterLoginCommand { get; set; }
 
         #endregion
-      
+
         public LandViewModel(IUnityContainer container, IRegionManager regionManager, IEventAggregator aggregator)
         {
             _container = container;
@@ -94,6 +95,7 @@ namespace DataManager.Land.ViewsModels
                 StaticProperty.staticUserName = UserName;
                 _aggregator.GetEvent<UserNameChangedEvent>().Publish(StaticProperty.staticUserName);
 
+
                 InterfaceClass.ClientInterface.Star();
                 string macAddress = InterfaceClass.ClientInterface.ReceiveMacAddress(UserName);
 
@@ -137,10 +139,22 @@ namespace DataManager.Land.ViewsModels
                     {
                         MessageBox.Show("登录失败，请检查再重新登录");
                     }
-                }
-                #endregion
-            }
 
+                    //Thread th = new Thread(() =>
+                    //{
+                    //    while (true)
+                    //    {
+                    //        InterfaceClass.ClientInterface.Star();
+                    //    }
+                    //})
+                    //{
+                    //    IsBackground = true
+                    //};
+                    //th.Start();
+
+                    #endregion
+                }
+            }
             catch
             {
                 IsBusy = true;

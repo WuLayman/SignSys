@@ -19,5 +19,6 @@ namespace Client.Infrastructure
         public static string HomePageRegion = "HomePageRegion";
         public static string ModifyProfileRegion = "ModifyProfileRegion";
         public static string ShellRegion = "ShellRegion";
+        public static string ChangeBackgroundColorRegion = "ChangeBackgroundColorRegion";
     }
 }

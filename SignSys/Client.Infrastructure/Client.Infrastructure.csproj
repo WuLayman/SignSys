@@ -68,6 +68,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnotherCommandImplementation.cs" />
     <Compile Include="InterfaceClass.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="PasswordBingSolve.cs" />
@@ -86,6 +87,7 @@
     </Compile>
     <Compile Include="PusSubEvents.cs" />
     <Compile Include="RegionNames.cs" />
+    <Compile Include="RippleAssist.cs" />
     <Compile Include="StaticProperty.cs" />
     <Compile Include="ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

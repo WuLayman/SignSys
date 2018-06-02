@@ -43,6 +43,7 @@ namespace DataManager.Title.ViewsModels
         public DelegateCommand ModifyPasswordCommand { get; set; }
         public DelegateCommand SignCommand { get; set; }
         public DelegateCommand ModifyProfileCommand { get; set; }
+        public DelegateCommand ChangeBackgroundCommand { get; set; }
 
         #endregion
 
@@ -61,8 +62,15 @@ namespace DataManager.Title.ViewsModels
             ModifyPasswordCommand = new DelegateCommand(ModifyPassword, NotLand);
             SignCommand = new DelegateCommand(Sign, CanNotSign);
             ModifyProfileCommand = new DelegateCommand(ModifyProfile);
+            ChangeBackgroundCommand = new DelegateCommand(ChangeBackground);
             //UserName = StaticProperty.staticUserName;
             _aggregator.GetEvent<UserNameChangedEvent>().Subscribe(UserNameChange);
+        }
+
+        private void ChangeBackground()
+        {
+            var uri = new Uri("ChangeBackgroundColor", UriKind.Relative);
+            _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
         }
 
         private void ModifyProfile()
@@ -83,29 +91,10 @@ namespace DataManager.Title.ViewsModels
         {
             if (UserName == null)
             {
-                //Thread th = new Thread(() =>
-                //{
-                //    while (true)
-                //    {
-                //        if (UserName != null)
-                //        {
-                //            NotLand();
-                //            //break;
-                //        }
-                //        UserName = StaticProperty.staticUserName;
-
-                //    }
-                //})
-                //{
-                //    IsBackground = true
-                //};
-                //th.Start();
                 return false;
-
             }
             else
             {
-
                 return true;
             }
 
@@ -116,7 +105,17 @@ namespace DataManager.Title.ViewsModels
             {
                 //退出登录
                 UserName = null;
-                InterfaceClass.ClientInterface.Leave();
+                Thread th = new Thread(() =>
+                {
+                    while (true)
+                    {
+                        InterfaceClass.ClientInterface.Leave();
+                    }
+                })
+                {
+                    IsBackground = true
+                };
+                th.Start();
                 var uri = new Uri("Land", UriKind.Relative);
                 _regionManager.RequestNavigate(RegionNames.LandRegion, uri);
             }
