@@ -152,7 +152,6 @@ namespace WCFSocket.CommunicateManager.Agreement
 
             }
         }
-
         public void Leave(PersonInfo personInfo)
         {
             foreach (var d in ServerOperation.people)
@@ -164,8 +163,6 @@ namespace WCFSocket.CommunicateManager.Agreement
                 }
             }
         }
-
-
         public string ReceiveMacAddress(string userName)
         {
             return getData.ReceiveMacAddress(userName);
