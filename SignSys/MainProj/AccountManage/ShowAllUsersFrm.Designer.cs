@@ -102,7 +102,6 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dgvUsersInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
             this.Name = "ShowAllUsersFrm";
             this.Text = "用户信息";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersInfo)).EndInit();
