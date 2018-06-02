@@ -48,7 +48,7 @@ namespace I_communication_component
                 Thread.Sleep(1000);
                 try
                 {
-                    client.Update(personInfo);
+                    client.UpdateAsync(personInfo);
                     Setreconnection();
                 }
                 catch

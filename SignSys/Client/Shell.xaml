@@ -22,7 +22,9 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}" 
-        Title="719~721签到系统">
+        Title="719~721签到系统"
+        WindowStartupLocation="CenterScreen"
+    >
     <mahapp:MetroWindow.IconTemplate>
         <DataTemplate>
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">

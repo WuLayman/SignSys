@@ -136,9 +136,7 @@ namespace DataManager.Land.ViewsModels
                     else
                     {
                         MessageBox.Show("登录失败，请检查再重新登录");
-                        Password = null;
                     }
-
                 }
                 #endregion
             }
