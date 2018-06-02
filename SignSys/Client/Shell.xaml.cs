@@ -27,14 +27,15 @@ namespace ClientProj
         //IRegionManager _regionManager;
         //IUnityContainer _container;
 
-        public Shell()
+        public Shell(IShellViewModel viewModel)
         {
             //_regionManager = regionManager;
             //_container = container;
-            //ViewModel = viewModel;
+            
             InitializeComponent();
 
-            ShellViewModel viewModel = new ShellViewModel();
+            ViewModel = viewModel;
+            //ShellViewModel viewModel = new ShellViewModel();
             DataContext = viewModel;
 
             InterfaceClass.ClientInterface.Star();

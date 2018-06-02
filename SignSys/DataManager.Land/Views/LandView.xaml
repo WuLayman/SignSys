@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:infrastructure="clr-namespace:Client.Infrastructure;assembly=Client.Infrastructure"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d"
@@ -53,7 +54,10 @@
                 <DockPanel Grid.Row="2">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Key" 
                                          Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}"/>
-                    <PasswordBox x:Name="PasswordBox" infrastructure:PasswordBingSolve.Password="{Binding Password,Mode=TwoWay}" Margin="3" VerticalAlignment="Center" Loaded="PasswordBox_Loaded">
+                    <PasswordBox x:Name="PasswordBox" 
+                                 infrastructure:PasswordBingSolve.Password="{Binding Password,Mode=TwoWay}" 
+                                 Margin="3" VerticalAlignment="Center" Loaded="PasswordBox_Loaded" 
+                                 >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="KeyDown">
                                 <!-- This action will invoke the selected command in the view model and pass the parameters of the event to it. -->
