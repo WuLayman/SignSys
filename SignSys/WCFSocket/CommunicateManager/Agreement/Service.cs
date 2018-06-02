@@ -117,7 +117,7 @@ namespace WCFSocket.CommunicateManager.Agreement
             return tip;
         }
 
-       private void Login(PersonInfo personInfo)
+        public void Login(PersonInfo personInfo)
         {
             EndpointAddress IP = OperationContext.Current.Channel.RemoteAddress;
             var endpoint = OperationContext.Current.IncomingMessageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
