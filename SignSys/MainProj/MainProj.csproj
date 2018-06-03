@@ -111,6 +111,7 @@
       <DependentUpon>DBConnectConfigFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigConnectionString\EncryptionHelper.cs" />
+    <Compile Include="ConfigConnectionString\IPHelper.cs" />
     <Compile Include="ConfigConnectionString\UpdateConfigFile.cs" />
     <Compile Include="PersonIPEndPointCollection.cs" />
     <Compile Include="PersonIPEndPoint.cs" />

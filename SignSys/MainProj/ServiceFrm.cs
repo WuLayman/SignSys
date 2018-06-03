@@ -155,7 +155,7 @@ namespace MainProj
 
         private void RefreshTxtMsg(string msg)
         {
-            this.BeginInvoke(new Action(() => { txtShowMsg.Text += msg + DateTime.Now.ToString() + "\r\n"; }));
+            this.BeginInvoke(new Action(() => { txtShowMsg.Text += msg + " " + DateTime.Now.ToString() + "\r\n"; }));
         }
 
         bool b2 = false;
