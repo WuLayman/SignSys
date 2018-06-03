@@ -48,47 +48,38 @@ namespace I_communication_component
         #endregion
         public void Run(CancellationToken ct)
         {
-            back = new CallBack();
-            InstanceContext context = new InstanceContext(back);
-            int i = 0;
-            using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
+            int i = 1;
+            while (true)
             {
-                IService proxy = channelFactory.CreateChannel();
-                using (proxy as IDisposable)
+                ct.ThrowIfCancellationRequested();
+                Thread.Sleep(3000);
+                try
                 {
-                    while (true)
+                    client.Update(personInfo);
+                    Setreconnection();
+                }
+                catch
+                {
+                    SetBreaken();
+                    try
                     {
-                        ct.ThrowIfCancellationRequested();
-                        Thread.Sleep(3000);
-                        try
+                        if (i == 10)
                         {
-                            proxy.Update(personInfo);
-                            Setreconnection();
+                            Console.WriteLine("已经重连10次失败，请检查错误！！！");
+                            break;
                         }
-                        catch
+                        else
                         {
-                            SetBreaken();
-                            try
-                            {
-                                if (i == 10)
-                                {
-                                    Console.WriteLine("已经重连10次失败，请检查错误！！！");
-                                    cts.Cancel();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("正在尝试第"+i+"次重连");
-                                    proxy = channelFactory.CreateChannel();
-                                    client = new ServiceClient(context);
-                                    client.SendPerosnInfoToServer(personInfo);
-                                }
-                            }
-                            catch
-                            {
-                                Console.WriteLine("重连异常");
-                                i += 1;
-                            }
+                            Console.WriteLine("正在尝试第" + i + "次重连");
+                            Star();
+                            client.SendPerosnInfoToServer(personInfo);
+                            client.Leave(personInfo);                             
                         }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("重连异常");
+                        i += 1;
                     }
                 }
             }
