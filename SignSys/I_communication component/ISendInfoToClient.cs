@@ -66,7 +66,7 @@ namespace I_communication_component
                         if (i == 10)
                         {
                             Console.WriteLine("已经重连10次失败，请检查错误！！！");
-                            cts.Cancel();
+                            break;
                         }
                         else
                         {
