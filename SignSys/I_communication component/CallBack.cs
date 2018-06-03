@@ -12,8 +12,6 @@ namespace I_communication_component
         public void ShowMessage(string msg)
         {
             Console.WriteLine("服务器正在工作中；" + msg);
-
-
         }
     }
 }
