@@ -77,7 +77,7 @@ namespace I_communication_component
                                 }
                                 else
                                 {
-                                    Console.WriteLine("正在重连");
+                                    Console.WriteLine("正在尝试第"+i+"次重连");
                                     proxy = channelFactory.CreateChannel();
                                     client = new ServiceClient(context);
                                     client.SendPerosnInfoToServer(personInfo);
