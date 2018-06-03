@@ -118,6 +118,11 @@ namespace MainProj.PictureManage
             {
                 //将图片显示
                 var picture = pictures.First().Picture;
+                if (picture == null)
+                {
+                    MessageBox.Show("未找到信息表！");
+                    return;
+                }
                 //将字节数组转换为图片并加以显示
                 MemoryStream ms = new MemoryStream(picture);
                 Image image = Image.FromStream(ms);
