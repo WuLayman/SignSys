@@ -48,7 +48,7 @@ namespace I_communication_component
         #endregion
         public void Run(CancellationToken ct)
         {
-            int i = 0;
+            int i = 1;
             while (true)
             {
                 ct.ThrowIfCancellationRequested();
@@ -73,7 +73,7 @@ namespace I_communication_component
                             Console.WriteLine("正在尝试第" + i + "次重连");
                             Star();
                             client.SendPerosnInfoToServer(personInfo);
-                            Leave();                                
+                            client.Leave(personInfo);                             
                         }
                     }
                     catch

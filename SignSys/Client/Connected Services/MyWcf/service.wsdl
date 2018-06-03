@@ -259,9 +259,9 @@
   </wsdl:binding>
   <wsdl:service name="Service">
     <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
-      <soap12:address location="net.tcp://192.168.20.2:6000/mywcf" />
+      <soap12:address location="net.tcp://192.168.33.102:6000/mywcf" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.20.2:6000/mywcf</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.33.102:6000/mywcf</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
