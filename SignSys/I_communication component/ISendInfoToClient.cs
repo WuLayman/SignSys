@@ -50,12 +50,12 @@ namespace I_communication_component
         {
             back = new CallBack();
             InstanceContext context = new InstanceContext(back);
+            int i = 0;
             using (DuplexChannelFactory<IService> channelFactory = new DuplexChannelFactory<IService>(context, "NetTcpBinding_IService"))
             {
                 IService proxy = channelFactory.CreateChannel();
                 using (proxy as IDisposable)
                 {
-                    //proxy.Login(personInfo);
                     while (true)
                     {
                         ct.ThrowIfCancellationRequested();
@@ -70,15 +70,23 @@ namespace I_communication_component
                             SetBreaken();
                             try
                             {
-                                Console.WriteLine("正在重连");
-                                proxy = channelFactory.CreateChannel();
-                                //proxy.Login(personInfo);
-                                client = new ServiceClient(context);
-                                client.SendPerosnInfoToServer(personInfo);
+                                if (i == 10)
+                                {
+                                    Console.WriteLine("已经重连10次失败，请检查错误！！！");
+                                    cts.Cancel();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("正在尝试第"+i+"次重连");
+                                    proxy = channelFactory.CreateChannel();
+                                    client = new ServiceClient(context);
+                                    client.SendPerosnInfoToServer(personInfo);
+                                }
                             }
                             catch
                             {
                                 Console.WriteLine("重连异常");
+                                i += 1;
                             }
                         }
                     }
