@@ -50,6 +50,8 @@ namespace MainProj.ConfigConnectionString
             cboProtocalType.Items.Add("TCP");
             cboProtocalType.SelectedIndex = 0;
             TestDBConnected();
+            //自动获取本地当前IPv4地址
+            this.txtSeverIP.Text = IPHelper.GetLocalIP();
         }
 
         Entities1 dbContext = EntityHelper.GetEntities();
